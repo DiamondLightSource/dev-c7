@@ -20,7 +20,7 @@ To see optional parameters, run the launch script with -h::
         -h              show this help
         -l              Enable logging
         -p              pull an updated version of the image first
-        -i image        specify the container image (default: ghcr.io/dls-controls/dev-c7)
+        -i image        specify the container image (default: ghcr.io/diamondlightsource/dev-c7)
         -v version      specify the image version (default: latest)
         -s host         set a hostname for your container (default: pc0116.cs.diamond.ac.uk)
         -d              delete previous container and start afresh
@@ -49,7 +49,7 @@ of the container then use the -v option::
 
 To check what versions of the image are available, take a look at the
 github container registry for this project
-https://ghcr.io/dls-controls/dev-c7
+https://ghcr.io/diamondlightsource/dev-c7
 
 Lifetime
 --------
@@ -87,7 +87,7 @@ dev-c7 shells and any GUI apps launched from them will be closed::
 
 When you next launch the container, it will be started with its file system
 initialized back to the default state specified in the image at
-ghcr.io/dls-controls/dev-c7:latest.
+ghcr.io/diamondlightsource/dev-c7:latest.
 
 You can also ask ``c7`` to perform the delete for you with ``-d``.
 
@@ -106,7 +106,7 @@ If the script has acquired new features you may want to update as follows::
 
     cd $HOME/bin
     rm c7
-    wget -nc https://raw.githubusercontent.com/dls-controls/dev-c7/main/c7
+    wget -nc https://raw.githubusercontent.com/diamondlightsource/dev-c7/main/c7
     chmod +x c7
 
     c7 -d # -d deletes previous container to start afresh

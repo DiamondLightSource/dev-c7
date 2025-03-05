@@ -9,4 +9,4 @@ Practical step-by-step guides for the more experienced user.
     :caption: Reference
 
     reference/contributing
-    Releases <https://github.com/dls-controls/dev-c7/releases>
+    Releases <https://github.com/diamondlightsource/dev-c7/releases>

@@ -41,7 +41,7 @@ Next, copy the startup script to your local bin directory and make it
 executable. ::
 
     cd $HOME/bin
-    curl -O https://raw.githubusercontent.com/dls-controls/dev-c7/main/c7
+    curl -O https://raw.githubusercontent.com/diamondlightsource/dev-c7/main/c7
     chmod +x c7
 
 Finally, launch an instance of the container by typing::
@@ -71,7 +71,7 @@ differences, see
 
 If you find anything that does not work or have suggestions for improvement,
 please report it
-`On GitHub Issues <https://github.com/dls-controls/dev-c7/issues>`_.
+`On GitHub Issues <https://github.com/diamondlightsource/dev-c7/issues>`_.
 
 - You can launch multiple instances of dev-c7 and they will share the
   same container.
@@ -99,4 +99,4 @@ The edm display manager uses local fonts that need to be installed on your host.
 Again, these should be part of the standard RHEL8 installation but early
 adopters may need to install them as follows::
 
-    bash <(curl -s https://raw.githubusercontent.com/dls-controls/dev-c7/main/edm-fonts/install-fonts.sh)
+    bash <(curl -s https://raw.githubusercontent.com/diamondlightsource/dev-c7/main/edm-fonts/install-fonts.sh)

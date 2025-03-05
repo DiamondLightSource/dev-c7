@@ -33,7 +33,7 @@ Images are stored in a container registry such as DockerHub or GitHub Container
 Registry https://ghcr.io. The image for ``dev-c7`` is stored alongside its source
 code here:
 
-    https://ghcr.io/dls-controls/dev-c7:latest
+    https://ghcr.io/diamondlightsource/dev-c7:latest
 
 The ``c7`` script uses ``podman run`` to create a container based on
 the above image. The container is an isolated execution environment with

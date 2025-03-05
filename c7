@@ -4,7 +4,7 @@
 
 # NOTE that changes to this file should also be propgated to .devcontainer.json
 
-image=ghcr.io/dls-controls/dev-c7
+image=ghcr.io/diamondlightsource/dev-c7
 version=latest
 hostname=$(hostname)
 changed=false
@@ -93,7 +93,7 @@ shift $((OPTIND-1))
 if [[ ${install_devcontainer_json} == true ]] ; then
     mkdir -p .devcontainer
     cd .devcontainer
-    wget -nv https://raw.githubusercontent.com/dls-controls/dev-c7/main/.devcontainer/devcontainer.json
+    wget -nv https://raw.githubusercontent.com/diamondlightsource/dev-c7/main/.devcontainer/devcontainer.json
     echo
     echo "Installed devcontainer.json. Try 'Reopen in Container' or 'Reload Window'."
     exit 0
@@ -101,7 +101,7 @@ fi
 
 if ! grep overlay ~/.config/containers/storage.conf &> /dev/null; then
     echo "ERROR: dev-c7 requires overlay filesystem."
-    echo "Please see https://dls-controls.github.io/dev-c7/main/how-to/podman.html"
+    echo "Please see https://diamondlightsource.github.io/dev-c7/main/how-to/podman.html"
     exit 1
 fi
 
@@ -218,7 +218,7 @@ elif [[ ${running} == "false" ]]; then
     # Prior to sleep we update the default shell to be bash,
     # this is because podman adds a user in etc/passwd but fails to honor
     # /etc/adduser.conf
-    version_tag=$(podman inspect --format='{{index .Labels "org.opencontainers.image.version"}}' ghcr.io/dls-controls/dev-c7:${version})
+    version_tag=$(podman inspect --format='{{index .Labels "org.opencontainers.image.version"}}' ghcr.io/diamondlightsource/dev-c7:${version})
     echo "Creating new dev-c7 container version ${version_tag:- Unknown} ..."
     ${logging}
 

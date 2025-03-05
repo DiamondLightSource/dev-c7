@@ -7,7 +7,7 @@ filing a new one. If you have a great idea but it involves big changes, please
 file a ticket before making a pull request! We want to make sure you don't spend
 your time coding something that might not fit the scope of the project.
 
-.. _GitHub: https://github.com/dls-controls/dev-c7/issues
+.. _GitHub: https://github.com/diamondlightsource/dev-c7/issues
 
 Testing
 -------
@@ -23,7 +23,7 @@ Make Container Image
 
 The image can be made locally with the script ``build-dec-c7``. The
 resulting image will be placed in the local cache with the tag
-``ghcr.io/dls-controls/dev-c7:latest``.
+``ghcr.io/diamondlightsource/dev-c7:latest``.
 
 Since this is the default tag that ``run-dev-c7`` uses you can now use it
 launch and try out the new container image.
@@ -67,7 +67,7 @@ To make a new release, please follow this checklist:
 - make changes on a branch and test locally with ``build-dev-c7``
 - add any required updates to the docs and test with ``docs/make_docs.sh``
 - push the changes to GitHub
-- Go to https://github.com/dls-controls/dev-c7/pulls and create a PR to main
+- Go to https://github.com/diamondlightsource/dev-c7/pulls and create a PR to main
 - GitHub actions will make an image to verify that it builds
 - Await approval for the PR
 - Choose a new PEP440 compliant release number
@@ -76,5 +76,5 @@ To make a new release, please follow this checklist:
 - Submit the release
 - GitHub Actions will publish the image to ghcr.io and the docs to GitHub Pages
 
-.. _release: https://github.com/dls-controls/dev-c7/releases
+.. _release: https://github.com/diamondlightsource/dev-c7/releases
 

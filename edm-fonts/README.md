@@ -22,5 +22,5 @@ In a scenario where this package is not avaiable, installing the fonts provided 
 Install with:
 
 ```bash
-bash <(curl -s https://github.com/dls-controls/dev-c7/raw/main/edm-fonts/install-fonts.sh)
+bash <(curl -s https://github.com/diamondlightsource/dev-c7/raw/main/edm-fonts/install-fonts.sh)
 ```

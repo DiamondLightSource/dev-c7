@@ -77,7 +77,7 @@ or you can create it manually::
     cd <my project folder>
     mkdir .devcontainer
     cd .devcontainer
-    wget -q https://raw.githubusercontent.com/dls-controls/dev-c7/main/.devcontainer/devcontainer.json
+    wget -q https://raw.githubusercontent.com/diamondlightsource/dev-c7/main/.devcontainer/devcontainer.json
 
 Then launch VSCode::
 
@@ -94,7 +94,7 @@ That's it, you are now running a developer container and your vscode session
 is connected to it.
 
 The above gets version 2.0.0 which is current as of 01/07/2022.
-See https://github.com/dls-controls/dev-c7/releases for the latest updates.
+See https://github.com/diamondlightsource/dev-c7/releases for the latest updates.
 
 
 Container Lifetime

@@ -1,4 +1,4 @@
-FROM ghcr.io/dls-controls/dev-c7:latest
+FROM ghcr.io/diamondlightsource/dev-c7:latest
 
 # dev tools and libraries
 RUN yum update -y && \

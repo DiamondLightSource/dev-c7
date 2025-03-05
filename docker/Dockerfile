@@ -2,7 +2,7 @@
 # hosted on RHEL8
 #
 # This is a stopgap so that we can use effort to promote the
-# kubernetes model https://github.com/dls-controls instead of spending
+# kubernetes model https://github.com/diamondlightsource instead of spending
 # effort in rebuilding our toolchain for RHEL8
 
 FROM centos:7
