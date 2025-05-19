@@ -29,7 +29,7 @@ RUN yum update -y && \
     # edm dependencies
     epel-release giflib-devel libXmu-devel libpng-devel libXtst-devel zlib-devel xorg-x11-proto-devel motif-devel libX11-devel libXp-devel libXpm-devel libtirpc-devel \
     # areaDetector dependencies
-    libxml2-devel libjpeg-turbo-devel libtiff-devel \
+    libxml2-devel libjpeg-turbo-devel libtiff-devel glib2-devel \
     # Odin dependencies
     hdf5-devel zeromq-devel librdkafka-devel \
     # QT4 dependencies
@@ -37,17 +37,13 @@ RUN yum update -y && \
     # dls-remote-desktop-support
     xfreerdp zenity \
     # useful tools
-    sudo meld tk dejavu-sans-mono-fonts gnome-terminal xterm xmessage evince eog firefox java openldap-clients && \
+    sudo meld tk dejavu-sans-mono-fonts gnome-terminal xterm xmessage evince eog firefox java openldap-clients ant && \
     # These packages are not found in the initial install so try again
     yum install -y zeromq-devel git2u meld && \
-    #install libnet library for EPICS module builds
+    # install libnet library for EPICS module builds
     yum install -y libnet libnet-devel && \
     # clean up caches
-    yum clean all && \
-    # nasty hack to avoid overlay filesystem problems with --userns=keep-id
-    # hopefully can be removed when this PR is released and deployed at DLS
-    # https://github.com/containers/fuse-overlayfs/pull/381
-    rm -fr /var/lib/yum/yumdb/*
+    yum clean all
 
 #install the required libusb developer library
 RUN yum remove -y libusbx && \
@@ -78,3 +74,6 @@ RUN yum remove -y git git-core && \
 # change the nobody account and group IDs to match RedHat
 RUN sed -i 's/99:99/65534:65534/' /etc/passwd && \
     sed -i 's/:99:/:65534:/' /etc/group
+
+
+RUN
