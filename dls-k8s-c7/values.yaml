@@ -1,0 +1,104 @@
+# Default values for dls-k8s-c7.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+replicaCount: 1
+
+# This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
+image:
+  repository: ghcr.io/diamondlightsource/dev-c7
+  # This sets the pull policy for images.
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+# these must be filled
+userId: 1200288
+userName: hgv27681
+
+# set to true for Channel access to be served on the locl subnet.
+hostNetwork: false
+
+# This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+imagePullSecrets: []
+# This is to override the chart name.
+nameOverride: ""
+fullnameOverride: ""
+
+# This is for setting Kubernetes Annotations to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+podAnnotations: {}
+# This is for setting Kubernetes Labels to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+podLabels: {}
+
+podSecurityContext:
+  {}
+  # fsGroup: 2000
+
+resources:
+  {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# volumes for the Deployment.
+volumes:
+  - name: work
+    hostPath:
+      path: /dls_sw/work
+  - name: prod
+    hostPath:
+      path: /dls_sw/prod
+  - name: epics
+    hostPath:
+      path: /dls_sw/epics
+  - name: apps
+    hostPath:
+      path: /dls_sw/apps
+  - name: targetos
+    hostPath:
+      path: /dls_sw/targetOS
+  - name: etc
+    hostPath:
+      path: /dls_sw/etc
+  - name: home
+    hostPath:
+      path: /home/hgv27681
+
+# volumeMounts for the Deployment.
+volumeMounts:
+  - name: work
+    mountPath: /dls_sw/work
+    readOnly: true
+  - name: prod
+    mountPath: /dls_sw/prod
+    readOnly: true
+  - name: epics
+    mountPath: /dls_sw/epics
+    readOnly: true
+  - name: apps
+    mountPath: /dls_sw/apps
+    readOnly: true
+  - name: targetos
+    mountPath: /dls_sw/targetOS
+    readOnly: true
+  - name: etc
+    mountPath: /dls_sw/etc
+    readOnly: true
+  - name: home
+    mountPath: /home/hgv27681
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
