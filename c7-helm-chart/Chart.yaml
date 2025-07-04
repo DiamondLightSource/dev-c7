@@ -1,5 +1,5 @@
 apiVersion: v2
-name: dls-k8s-c7
+name: dls-c7
 description: A Helm chart legacy DLS IOCs
 
 type: application
