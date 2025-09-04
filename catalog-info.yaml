@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: dev-c7
+  title: dev-c7
+  description: A Diamond Light Source specific developer container
+spec:
+  type: service
+  lifecycle: production
+  owner: group:default/controls

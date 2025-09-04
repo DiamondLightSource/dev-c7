@@ -1,0 +1,20 @@
+# Changes here will be overwritten by Copier
+_commit: 4.2.0
+_src_path: https://github.com/diamondlightsource/python-copier-template
+author_email: giles.knap@diamond.ac.uk
+author_name: Giles Knap
+component_lifecycle: production
+component_owner: group:default/controls
+component_type: service
+description: A Diamond Light Source specific developer container
+distribution_name: dev-c7
+docker: true
+docker_debug: false
+docs_type: sphinx
+git_platform: github.com
+github_org: DiamondLightSource
+package_name: dev_c7
+pypi: false
+repo_name: dev-c7
+strict_typing: false
+type_checker: pyright
