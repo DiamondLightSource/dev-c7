@@ -31,4 +31,3 @@ The additional features are:
     - provide a much faster container build and run
 #. put the root of podman scratch files in /scratch/<fed_id>/podman 
     - avoid loosing all scratch your files on ``podman system reset``
-

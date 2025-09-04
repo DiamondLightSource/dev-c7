@@ -6,5 +6,8 @@ Explanations of how it works and why it works that way.
 :maxdepth: 1
 :glob:
 
-explanations/*
+explanations/how_it_works
+explanations/differences
+explanations/why_dev_c7
+explanations/decisions
 ```

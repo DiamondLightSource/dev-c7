@@ -45,4 +45,3 @@ can pass a hostname of your choice as follows.
 
     If you are working remotely and launching the container from an
     ssh session changing the hostname will cause X11 apps to fail.
-

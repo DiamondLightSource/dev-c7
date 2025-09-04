@@ -13,7 +13,7 @@ specific requirements e.g.
 .. note::
     If the changes you need are likely to be useful to all developers then
     you should consider contributing to the base image for dev-c7.
-    See `../reference/contributing`
+    See `contribute`
 
 To make your own derived container.
 

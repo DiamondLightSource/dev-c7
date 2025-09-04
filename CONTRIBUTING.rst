@@ -77,4 +77,3 @@ To make a new release, please follow this checklist:
 - GitHub Actions will publish the image to ghcr.io and the docs to GitHub Pages
 
 .. _release: https://github.com/diamondlightsource/dev-c7/releases
-
