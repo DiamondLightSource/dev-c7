@@ -8,7 +8,7 @@ env:
 
 jobs:
   package-helm-charts:
-    name: Package and Push Helm Chart
+    name: Helm Chart
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

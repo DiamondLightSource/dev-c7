@@ -12,7 +12,7 @@ jobs:
   lint:
     uses: ./.github/workflows/_tox.yml
     with:
-      tox: pre-commit,type-checking
+      tox: pre-commit
 
   container:
     needs: helm
@@ -34,7 +34,7 @@ jobs:
       packages: write
 
   release:
-    needs: [container, docs, helm]
+    needs: [container, docs, helm, lint]
     if: github.ref_type == 'tag'
     uses: ./.github/workflows/_release.yml
     permissions:
