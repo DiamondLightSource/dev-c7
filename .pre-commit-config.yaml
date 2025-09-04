@@ -4,5 +4,6 @@ repos:
     hooks:
       - id: check-added-large-files
       - id: check-yaml
+        exclude: ^Charts/.*/templates
       - id: check-merge-conflict
       - id: end-of-file-fixer
