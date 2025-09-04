@@ -15,7 +15,7 @@ jobs:
       tox: pre-commit,type-checking
 
   container:
-    needs: test
+    needs: helm
     if: always()
     uses: ./.github/workflows/_container.yml
     with:
@@ -27,8 +27,14 @@ jobs:
   docs:
     uses: ./.github/workflows/_docs.yml
 
+  helm:
+    uses: ./.github/workflows/_helm.yml
+    permissions:
+      contents: read
+      packages: write
+
   release:
-    needs: [dist, test, docs]
+    needs: [container, docs, helm]
     if: github.ref_type == 'tag'
     uses: ./.github/workflows/_release.yml
     permissions:
