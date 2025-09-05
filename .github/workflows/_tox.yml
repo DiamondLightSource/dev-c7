@@ -6,7 +6,6 @@ on:
         description: What to run under tox
         required: true
 
-
 jobs:
   run:
     runs-on: "ubuntu-latest"
@@ -17,6 +16,9 @@ jobs:
 
       - name: Install python packages
         uses: ./.github/actions/install_requirements
+
+      - name: Install helm plugins
+        run: helm plugin install https://github.com/losisin/helm-values-schema-json.git
 
       - name: Run tox
         run: tox -e ${{ inputs.tox }}
