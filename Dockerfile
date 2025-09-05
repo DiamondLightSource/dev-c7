@@ -74,6 +74,3 @@ RUN yum remove -y git git-core && \
 # change the nobody account and group IDs to match RedHat
 RUN sed -i 's/99:99/65534:65534/' /etc/passwd && \
     sed -i 's/:99:/:65534:/' /etc/group
-
-
-RUN
