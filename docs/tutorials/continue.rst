@@ -113,4 +113,3 @@ If the script has acquired new features you may want to update as follows::
 
 Also update your devcontainer.json to match for projects you want to also
 upgrade.
-

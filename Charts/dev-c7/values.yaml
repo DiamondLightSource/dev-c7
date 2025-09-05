@@ -1,0 +1,110 @@
+# yaml-language-server: $schema=values.schema.json
+
+# NOTE: the $k8s schema references come from
+# https://github.com/yannh/kubernetes-json-schema/tree/master/v1.33.1
+# with the version set in .fastcs.schema.config.yaml (k8sSchemaVersion)
+
+# Default values for dev-c7 chart.
+# With annotations for building the schema using:
+#   https://github.com/losisin/helm-values-schema-json.git
+
+# @schema description: shared values for all services
+# @schema additionalProperties: true
+global: {}
+
+# @schema description: Set to 0 to stop the IOC, 1 to run the IOC
+replicaCount: 1
+
+# @schema description: container image URI
+image:
+  repository: ghcr.io/diamondlightsource/dev-c7
+  # This sets the pull policy for images.
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+# these must be filled
+userId: 1200288
+userName: hgv27681
+
+# @schema description: enable host networking for the pod
+hostNetwork: false
+
+# This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+imagePullSecrets: []
+# This is to override the chart name.
+nameOverride: ""
+fullnameOverride: ""
+
+# @schema description: Add annotations to the pod
+podAnnotations: {}
+
+# @schema description: Add labels to the pod
+podLabels: {}
+
+# @schema $ref: $k8s/podspec.json#/properties/securityContext
+podSecurityContext: {}
+
+# @schema  $ref:$k8s/container.json#/properties/securityContext
+securityContext: {}
+
+# @schema  $ref: $k8s/container.json#/properties/resources
+resources: {}
+
+# volumes for the Deployment.
+# @schema $ref: $k8s/podspec.json#/properties/volumes
+volumes:
+  - name: work
+    hostPath:
+      path: /dls_sw/work
+  - name: prod
+    hostPath:
+      path: /dls_sw/prod
+  - name: epics
+    hostPath:
+      path: /dls_sw/epics
+  - name: apps
+    hostPath:
+      path: /dls_sw/apps
+  - name: targetos
+    hostPath:
+      path: /dls_sw/targetOS
+  - name: etc
+    hostPath:
+      path: /dls_sw/etc
+  - name: home
+    hostPath:
+      path: /home/hgv27681
+
+# volumeMounts for the Deployment.
+# @schema $ref: $k8s/container.json#/properties/volumeMounts
+volumeMounts:
+  - name: work
+    mountPath: /dls_sw/work
+    readOnly: true
+  - name: prod
+    mountPath: /dls_sw/prod
+    readOnly: true
+  - name: epics
+    mountPath: /dls_sw/epics
+    readOnly: true
+  - name: apps
+    mountPath: /dls_sw/apps
+    readOnly: true
+  - name: targetos
+    mountPath: /dls_sw/targetOS
+    readOnly: true
+  - name: etc
+    mountPath: /dls_sw/etc
+    readOnly: true
+  - name: home
+    mountPath: /home/hgv27681
+
+# @schema $ref: $k8s/podspec.json#/properties/tolerations
+tolerations: []
+
+# @schema $ref: $k8s/podspec.json#/properties/nodeSelector
+nodeSelector: {}
+
+# @schema $ref: $k8s/affinity.json
+affinity: {}

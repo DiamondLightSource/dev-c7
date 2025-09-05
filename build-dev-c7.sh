@@ -6,7 +6,7 @@ set -e
 podman build\
     --network host \
     -t ${name}:latest \
-    ./docker
+    .
 
 
 # read -r -p "dev-c7 built OK. Push to ${name}:${1} [y/N] " response

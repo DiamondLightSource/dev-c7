@@ -1,0 +1,14 @@
+apiVersion: v2
+name: dev-c7
+description: A Helm chart legacy DLS IOCs
+
+type: application
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 0.1.0
+
+# This is the version number of the application being deployed. It implies the
+# the version tag of the container image.
+appVersion: 2025.5.1

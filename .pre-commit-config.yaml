@@ -1,7 +1,17 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+    rev: v5.0.0
     hooks:
       - id: check-added-large-files
       - id: check-yaml
+        exclude: ^Charts/.*/templates
       - id: check-merge-conflict
+      - id: end-of-file-fixer
+
+  - repo: https://github.com/losisin/helm-values-schema-json
+    rev: v2.2.1
+    hooks:
+      - id: helm-schema
+        args:
+          - --config
+          - Charts/dev-c7/.schema.config.yaml

@@ -85,7 +85,7 @@ Below is the current Dockerfile, read on for an explanation of the
 commands used.
 
 
-.. literalinclude:: ../../docker/Dockerfile
+.. literalinclude:: ../../Dockerfile
    :language: docker
 
 
