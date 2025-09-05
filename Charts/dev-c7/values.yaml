@@ -32,11 +32,11 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-# @shema description: container entry point command
+# @schema description: container entry point command
 command:
   - bash
   - -c
-  -
+  - ./bin/linux-x86_64/st*.sh
 
 # @schema description: enable host networking for the pod
 hostNetwork: false

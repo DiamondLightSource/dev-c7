@@ -9,9 +9,10 @@
             "type": "object"
         },
         "command": {
+            "description": "container entry point command",
             "type": "array",
             "items": {
-                "type": "null"
+                "type": "string"
             }
         },
         "epics_version": {

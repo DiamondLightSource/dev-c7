@@ -51,7 +51,7 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           command:
-            {{ .Values.command | toYaml | indent 12 }}
+            {{- .Values.command | toYaml | nindent 12 }}
           stdin: true
           tty: true
           {{- $domain := (.Values.ioc_domain | default $location) | upper }}
