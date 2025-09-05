@@ -19,7 +19,8 @@ jobs:
     if: always()
     uses: ./.github/workflows/_container.yml
     with:
-      publish: ${{ needs.test.result == 'success' }}
+      # publish is always true as there is no tests for dev-c7 at present
+      publish: true
     permissions:
       contents: read
       packages: write
