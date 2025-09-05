@@ -83,9 +83,6 @@ volumes:
   - name: etc
     hostPath:
       path: /dls_sw/etc
-  - name: home
-    hostPath:
-      path: /home/hgv27681
 
 # volumeMounts for the Deployment.
 # @schema $ref: $k8s/container.json#/properties/volumeMounts
@@ -108,8 +105,6 @@ volumeMounts:
   - name: etc
     mountPath: /dls_sw/etc
     readOnly: true
-  - name: home
-    mountPath: /home/hgv27681
 
 # @schema $ref: $k8s/podspec.json#/properties/tolerations
 tolerations: []
