@@ -68,9 +68,9 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           env:
-          # make sure that the $HOME path is writeable
+          # psuedo home sets up epics module etc.
           - name: HOME
-            value: /tmp
+            value: /epics_home
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.livenessProbe }}
           livenessProbe:

@@ -74,3 +74,20 @@ RUN yum remove -y git git-core && \
 # change the nobody account and group IDs to match RedHat
 RUN sed -i 's/99:99/65534:65534/' /etc/passwd && \
     sed -i 's/:99:/:65534:/' /etc/group
+
+# Install uv using the official image
+# See https://docs.astral.sh/uv/guides/integration/docker/#installing-uv
+COPY --from=ghcr.io/astral-sh/uv:0.8 /uv /uvx /bin/
+WORKDIR /opt
+
+ENV UV_PYTHON_INSTALL_DIR=/python
+ENV PATH="${PATH}:/opt/.venv/bin"
+
+# Add in stdio socket for sharing the epics console
+RUN uv venv --managed-python --python 3.12 && \
+    uv pip install stdio-socket && \
+    chmod -R a+rwX /opt/.venv
+
+# Make a psuedo home directory for running in cluster
+COPY epics_home /epics_home
+RUN chmod a+rws /epics_home
