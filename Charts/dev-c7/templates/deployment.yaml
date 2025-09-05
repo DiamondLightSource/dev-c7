@@ -39,6 +39,10 @@ spec:
             - "-c"
             - "sleep infinity"
           workingDir: /dls_sw/prod/R3.14.12.7/ioc/BL16I/BL16I-MO-IOC-12/21-2
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           env:
           - name: HOME
             value: /home/{{ .Values.userName }}

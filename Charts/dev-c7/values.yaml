@@ -1,11 +1,21 @@
-# Default values for dls-k8s-c7.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# yaml-language-server: $schema=values.schema.json
 
-# This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+# NOTE: the $k8s schema references come from
+# https://github.com/yannh/kubernetes-json-schema/tree/master/v1.33.1
+# with the version set in .fastcs.schema.config.yaml (k8sSchemaVersion)
+
+# Default values for dev-c7 chart.
+# With annotations for building the schema using:
+#   https://github.com/losisin/helm-values-schema-json.git
+
+# @schema description: shared values for all services
+# @schema additionalProperties: true
+global: {}
+
+# @schema description: Set to 0 to stop the IOC, 1 to run the IOC
 replicaCount: 1
 
-# This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
+# @schema description: container image URI
 image:
   repository: ghcr.io/diamondlightsource/dev-c7
   # This sets the pull policy for images.
@@ -17,7 +27,7 @@ image:
 userId: 1200288
 userName: hgv27681
 
-# set to true for Channel access to be served on the locl subnet.
+# @schema description: enable host networking for the pod
 hostNetwork: false
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
@@ -26,31 +36,23 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-# This is for setting Kubernetes Annotations to a Pod.
-# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+# @schema description: Add annotations to the pod
 podAnnotations: {}
-# This is for setting Kubernetes Labels to a Pod.
-# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+
+# @schema description: Add labels to the pod
 podLabels: {}
 
-podSecurityContext:
-  {}
-  # fsGroup: 2000
+# @schema $ref: $k8s/podspec.json#/properties/securityContext
+podSecurityContext: {}
 
-resources:
-  {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+# @schema  $ref:$k8s/container.json#/properties/securityContext
+securityContext: {}
+
+# @schema  $ref: $k8s/container.json#/properties/resources
+resources: {}
 
 # volumes for the Deployment.
+# @schema $ref: $k8s/podspec.json#/properties/volumes
 volumes:
   - name: work
     hostPath:
@@ -75,6 +77,7 @@ volumes:
       path: /home/hgv27681
 
 # volumeMounts for the Deployment.
+# @schema $ref: $k8s/container.json#/properties/volumeMounts
 volumeMounts:
   - name: work
     mountPath: /dls_sw/work
@@ -97,8 +100,11 @@ volumeMounts:
   - name: home
     mountPath: /home/hgv27681
 
-nodeSelector: {}
-
+# @schema $ref: $k8s/podspec.json#/properties/tolerations
 tolerations: []
 
+# @schema $ref: $k8s/podspec.json#/properties/nodeSelector
+nodeSelector: {}
+
+# @schema $ref: $k8s/affinity.json
 affinity: {}

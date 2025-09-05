@@ -7,3 +7,11 @@ repos:
         exclude: ^Charts/.*/templates
       - id: check-merge-conflict
       - id: end-of-file-fixer
+
+  - repo: https://github.com/losisin/helm-values-schema-json
+    rev: v2.2.1
+    hooks:
+      - id: helm-schema
+        args:
+          - --config
+          - Charts/dev-c7/.schema.config.yaml
