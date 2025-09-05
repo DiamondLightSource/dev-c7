@@ -8,12 +8,21 @@
 # With annotations for building the schema using:
 #   https://github.com/losisin/helm-values-schema-json.git
 
+# @schema description: the folder name for the compiled IOC, defaults to ucase of the services folder name
+ioc_name: ""
+# @schema description: the IOC release, used to generate the /dls_sw/prod path to ioc_name
+ioc_version: ""
+# @schema description: the IOC domain (e.g. BL16I FE02J SR03C)
+ioc_domain: ""
+# @schema description: the EPICS version, used to generate the /dls_sw/prod path to ioc_name
+epics_version: R3.14.12.7
+
+# @schema description: overrides the parent folder for ioc_name to any path in /dls_sw/work or /dls_sw/prod
+ioc_path: ""
+
 # @schema description: shared values for all services
 # @schema additionalProperties: true
 global: {}
-
-# @schema description: Set to 0 to stop the IOC, 1 to run the IOC
-replicaCount: 1
 
 # @schema description: container image URI
 image:
@@ -23,9 +32,11 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-# these must be filled
-userId: 1200288
-userName: hgv27681
+# @shema description: container entry point command
+command:
+  - bash
+  - -c
+  -
 
 # @schema description: enable host networking for the pod
 hostNetwork: false

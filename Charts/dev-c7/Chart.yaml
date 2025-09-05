@@ -11,4 +11,4 @@ version: 0.1.0
 
 # This is the version number of the application being deployed. It implies the
 # the version tag of the container image.
-appVersion: 2025.5.1
+appVersion: 2025.9.1-beta.2
