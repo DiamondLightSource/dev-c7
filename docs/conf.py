@@ -189,3 +189,7 @@ html_show_copyright = False
 # Logo
 html_logo = "images/dls-logo.svg"
 html_favicon = html_logo
+
+# Custom CSS
+html_static_path = ["_static"]
+html_css_files = ["custom.css"]
