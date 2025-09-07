@@ -8,6 +8,17 @@
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/affinity.json",
             "type": "object"
         },
+        "command": {
+            "description": "container entry point command",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "epics_version": {
+            "description": "the EPICS version, used to generate the /dls_sw/prod path to ioc_name",
+            "type": "string"
+        },
         "fullnameOverride": {
             "type": "string"
         },
@@ -38,6 +49,22 @@
         "imagePullSecrets": {
             "type": "array"
         },
+        "ioc_domain": {
+            "description": "the IOC domain (e.g. BL16I FE02J SR03C)",
+            "type": "string"
+        },
+        "ioc_name": {
+            "description": "the folder name for the compiled IOC, defaults to ucase of the services folder name",
+            "type": "string"
+        },
+        "ioc_path": {
+            "description": "overrides the parent folder for ioc_name to any path in /dls_sw/work or /dls_sw/prod",
+            "type": "string"
+        },
+        "ioc_version": {
+            "description": "the IOC release, used to generate the /dls_sw/prod path to ioc_name",
+            "type": "string"
+        },
         "nameOverride": {
             "type": "string"
         },
@@ -57,10 +84,6 @@
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/podspec.json#/properties/securityContext",
             "type": "object"
         },
-        "replicaCount": {
-            "description": "Set to 0 to stop the IOC, 1 to run the IOC",
-            "type": "integer"
-        },
         "resources": {
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/container.json#/properties/resources",
             "type": "object"
@@ -72,12 +95,6 @@
         "tolerations": {
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/podspec.json#/properties/tolerations",
             "type": "array"
-        },
-        "userId": {
-            "type": "integer"
-        },
-        "userName": {
-            "type": "string"
         },
         "volumeMounts": {
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/container.json#/properties/volumeMounts",
