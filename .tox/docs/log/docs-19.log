@@ -1,0 +1,93 @@
+action: docs, msg: parallel docs
+cwd: /scratch/hgv27681/work/dev-c7
+cmd: /scratch/hgv27681/work/dev-c7/.venv/bin/python3 .venv/lib/python3.13/site-packages/tox/__main__.py -p
+docs installed: accessible-pygments==0.0.5,alabaster==1.0.0,annotated-types==0.7.0,anyio==4.10.0,babel==2.17.0,beautifulsoup4==4.13.5,certifi==2025.8.3,cfgv==3.4.0,charset-normalizer==3.4.3,click==8.2.1,colorama==0.4.6,copier==9.10.1,coverage==7.10.6,-e git+ssh://git@github.com/DiamondLightSource/dev-c7.git@129eda49d32f14bc7b8c7494a918cfb64c5e7ec4#egg=dev_c7,distlib==0.4.0,docutils==0.21.2,dunamai==1.25.0,filelock==3.19.1,funcy==2.0,h11==0.16.0,identify==2.6.13,idna==3.10,imagesize==1.4.1,iniconfig==2.1.0,Jinja2==3.1.6,jinja2-ansible-filters==1.3.2,markdown-it-py==3.0.0,MarkupSafe==3.0.2,mdit-py-plugins==0.5.0,mdurl==0.1.2,myst-parser==4.0.1,nodeenv==1.9.1,packaging==25.0,pathlib2==2.3.7.post1,pathspec==0.12.1,pipdeptree==2.28.0,platformdirs==4.4.0,pluggy==1.6.0,plumbum==1.9.0,pre_commit==4.3.0,prompt_toolkit==3.0.51,py==1.11.0,pydantic==2.11.7,pydantic_core==2.33.2,pydata-sphinx-theme==0.16.1,Pygments==2.19.2,pyright==1.1.405,pytest==8.4.1,pytest-cov==6.2.1,PyYAML==6.0.2,questionary==2.1.1,requests==2.32.5,roman-numerals-py==3.1.0,ruff==0.12.11,six==1.17.0,sniffio==1.3.1,snowballstemmer==3.0.1,soupsieve==2.8,Sphinx==8.2.3,sphinx-autobuild==2025.8.25,sphinx-copybutton==0.5.2,sphinx_design==0.6.1,sphinxcontrib-applehelp==2.0.0,sphinxcontrib-devhelp==2.0.0,sphinxcontrib-htmlhelp==2.1.0,sphinxcontrib-jsmath==1.0.1,sphinxcontrib-qthelp==2.0.0,sphinxcontrib-serializinghtml==2.0.0,starlette==0.47.3,tox==3.28.0,tox-direct==0.4,types-mock==5.2.0.20250809,typing-inspection==0.4.1,typing_extensions==4.15.0,urllib3==2.5.0,uvicorn==0.35.0,virtualenv==20.34.0,watchfiles==1.1.0,wcwidth==0.2.13,websockets==15.0.1
+docs run-test-pre: PYTHONHASHSEED='3147631597'
+docs run-test: commands[0] | sphinx-build -EW --keep-going -T docs build/html
+Running Sphinx v8.2.3
+*** Can't read version switcher, is GitHub pages enabled? 
+    Once Docs CI job has successfully run once, set the Github pages source branch to be 'gh-pages' at:
+    https://github.com/DiamondLightSource/dev-c7/settings/pages
+loading translations [en]... done
+[autosummary] generating autosummary for: _api.rst, _api/dev_c7.rst, explanations.md, explanations/decisions.md, explanations/decisions/0001-record-architecture-decisions.md, explanations/decisions/0002-switched-to-python-copier-template.md, explanations/differences.rst, explanations/how_it_works.rst, explanations/why_dev_c7.rst, genindex.md, ..., how-to/podman.rst, how-to/run-container.md, how-to/troubleshooting.rst, index.md, reference.md, tutorials.md, tutorials/continue.rst, tutorials/prompt.rst, tutorials/start.rst, tutorials/vscode.rst
+loading intersphinx inventory 'python' from https://docs.python.org/3/objects.inv ...
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions={'colon_fence'}, disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=0, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 24 source files that are out of date
+updating environment: [new config] 24 added, 0 changed, 0 removed
+reading sources... [  4%] _api
+reading sources... [  8%] _api/dev_c7
+reading sources... [ 12%] explanations
+reading sources... [ 17%] explanations/decisions
+reading sources... [ 21%] explanations/decisions/0001-record-architecture-decisions
+reading sources... [ 25%] explanations/decisions/0002-switched-to-python-copier-template
+reading sources... [ 29%] explanations/differences
+reading sources... [ 33%] explanations/how_it_works
+reading sources... [ 38%] explanations/why_dev_c7
+reading sources... [ 42%] genindex
+reading sources... [ 46%] how-to
+reading sources... [ 50%] how-to/containers
+reading sources... [ 54%] how-to/contribute
+reading sources... [ 58%] how-to/deriving
+reading sources... [ 62%] how-to/podman
+reading sources... [ 67%] how-to/run-container
+reading sources... [ 71%] how-to/troubleshooting
+reading sources... [ 75%] index
+reading sources... [ 79%] reference
+reading sources... [ 83%] tutorials
+reading sources... [ 88%] tutorials/continue
+reading sources... [ 92%] tutorials/prompt
+reading sources... [ 96%] tutorials/start
+reading sources... [100%] tutorials/vscode
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... /scratch/hgv27681/work/dev-c7/docs/_api/dev_c7.rst: document is referenced in multiple toctrees: ['_api', 'reference'], selecting: reference <- _api/dev_c7
+done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /scratch/hgv27681/work/dev-c7/build/html/_static/basic.css
+Writing evaluated template result to /scratch/hgv27681/work/dev-c7/build/html/_static/documentation_options.js
+Writing evaluated template result to /scratch/hgv27681/work/dev-c7/build/html/_static/language_data.js
+Writing evaluated template result to /scratch/hgv27681/work/dev-c7/build/html/_static/copybutton.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [  4%] _api
+writing output... [  8%] _api/dev_c7
+writing output... [ 12%] explanations
+writing output... [ 17%] explanations/decisions
+writing output... [ 21%] explanations/decisions/0001-record-architecture-decisions
+writing output... [ 25%] explanations/decisions/0002-switched-to-python-copier-template
+writing output... [ 29%] explanations/differences
+writing output... [ 33%] explanations/how_it_works
+writing output... [ 38%] explanations/why_dev_c7
+writing output... [ 42%] genindex
+writing output... [ 46%] how-to
+writing output... [ 50%] how-to/containers
+writing output... [ 54%] how-to/contribute
+writing output... [ 58%] how-to/deriving
+writing output... [ 62%] how-to/podman
+writing output... [ 67%] how-to/run-container
+writing output... [ 71%] how-to/troubleshooting
+writing output... [ 75%] index
+writing output... [ 79%] reference
+writing output... [ 83%] tutorials
+writing output... [ 88%] tutorials/continue
+writing output... [ 92%] tutorials/prompt
+writing output... [ 96%] tutorials/start
+writing output... [100%] tutorials/vscode
+
+generating indices... genindex py-modindex done
+highlighting module code... 
+writing additional pages... search done
+copying images... [100%] images/button.png
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in build/html.

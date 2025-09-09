@@ -1,0 +1,74 @@
+action: docs, msg: parallel docs
+cwd: /scratch/hgv27681/work/dev-c7
+cmd: /scratch/hgv27681/work/dev-c7/.venv/bin/python3 .venv/lib/python3.13/site-packages/tox/__main__.py -p
+docs installed: accessible-pygments==0.0.5,alabaster==1.0.0,annotated-types==0.7.0,anyio==4.10.0,babel==2.17.0,beautifulsoup4==4.13.5,certifi==2025.8.3,cfgv==3.4.0,charset-normalizer==3.4.3,click==8.2.1,colorama==0.4.6,copier==9.10.1,coverage==7.10.6,-e git+ssh://git@github.com/DiamondLightSource/dev-c7.git@bee2e4bbf0f6cef81db9b02819fb769319bc022d#egg=dev_c7,distlib==0.4.0,docutils==0.21.2,dunamai==1.25.0,filelock==3.19.1,funcy==2.0,h11==0.16.0,identify==2.6.13,idna==3.10,imagesize==1.4.1,iniconfig==2.1.0,Jinja2==3.1.6,jinja2-ansible-filters==1.3.2,markdown-it-py==3.0.0,MarkupSafe==3.0.2,mdit-py-plugins==0.5.0,mdurl==0.1.2,myst-parser==4.0.1,nodeenv==1.9.1,packaging==25.0,pathlib2==2.3.7.post1,pathspec==0.12.1,pipdeptree==2.28.0,platformdirs==4.4.0,pluggy==1.6.0,plumbum==1.9.0,pre_commit==4.3.0,prompt_toolkit==3.0.51,py==1.11.0,pydantic==2.11.7,pydantic_core==2.33.2,pydata-sphinx-theme==0.16.1,Pygments==2.19.2,pyright==1.1.405,pytest==8.4.1,pytest-cov==6.2.1,PyYAML==6.0.2,questionary==2.1.1,requests==2.32.5,roman-numerals-py==3.1.0,ruff==0.12.11,six==1.17.0,sniffio==1.3.1,snowballstemmer==3.0.1,soupsieve==2.8,Sphinx==8.2.3,sphinx-autobuild==2025.8.25,sphinx-copybutton==0.5.2,sphinx_design==0.6.1,sphinxcontrib-applehelp==2.0.0,sphinxcontrib-devhelp==2.0.0,sphinxcontrib-htmlhelp==2.1.0,sphinxcontrib-jsmath==1.0.1,sphinxcontrib-qthelp==2.0.0,sphinxcontrib-serializinghtml==2.0.0,starlette==0.47.3,tox==3.28.0,tox-direct==0.4,types-mock==5.2.0.20250809,typing-inspection==0.4.1,typing_extensions==4.15.0,urllib3==2.5.0,uvicorn==0.35.0,virtualenv==20.34.0,watchfiles==1.1.0,wcwidth==0.2.13,websockets==15.0.1
+docs run-test-pre: PYTHONHASHSEED='206097887'
+docs run-test: commands[0] | sphinx-build -EW --keep-going -T docs build/html
+Running Sphinx v8.2.3
+
+Configuration error!
+
+Versions
+========
+
+* Platform:         linux; (Linux-4.18.0-553.64.1.el8_10.x86_64-x86_64-with-glibc2.28)
+* Python version:   3.13.4 (CPython)
+* Sphinx version:   8.2.3
+* Docutils version: 0.21.2
+* Jinja2 version:   3.1.6
+* Pygments version: 2.19.2
+
+Last Messages
+=============
+
+None.
+
+Loaded Extensions
+=================
+
+None.
+
+Traceback
+=========
+
+    Traceback (most recent call last):
+      File "/scratch/hgv27681/work/dev-c7/.venv/lib/python3.13/site-packages/sphinx/config.py", line 601, in eval_config_file
+        exec(code, namespace)  # NoQA: S102
+        ~~~~^^^^^^^^^^^^^^^^^
+      File "/scratch/hgv27681/work/dev-c7/docs/conf.py", line 14, in <module>
+        import dev_c7
+    ModuleNotFoundError: No module named 'dev_c7'
+    
+    The above exception was the direct cause of the following exception:
+    
+    Traceback (most recent call last):
+      File "/scratch/hgv27681/work/dev-c7/.venv/lib/python3.13/site-packages/sphinx/cmd/build.py", line 414, in build_main
+        app = Sphinx(
+            srcdir=args.sourcedir,
+        ...<14 lines>...
+            exception_on_warning=args.exception_on_warning,
+        )
+      File "/scratch/hgv27681/work/dev-c7/.venv/lib/python3.13/site-packages/sphinx/application.py", line 266, in __init__
+        self.config = Config.read(self.confdir, confoverrides or {}, self.tags)
+                      ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/scratch/hgv27681/work/dev-c7/.venv/lib/python3.13/site-packages/sphinx/config.py", line 357, in read
+        namespace = eval_config_file(filename, tags)
+      File "/scratch/hgv27681/work/dev-c7/.venv/lib/python3.13/site-packages/sphinx/config.py", line 616, in eval_config_file
+        raise ConfigError(msg % traceback.format_exc()) from exc
+    sphinx.errors.ConfigError: There is a programmable error in your configuration file:
+    
+    Traceback (most recent call last):
+      File "/scratch/hgv27681/work/dev-c7/.venv/lib/python3.13/site-packages/sphinx/config.py", line 601, in eval_config_file
+        exec(code, namespace)  # NoQA: S102
+        ~~~~^^^^^^^^^^^^^^^^^
+      File "/scratch/hgv27681/work/dev-c7/docs/conf.py", line 14, in <module>
+        import dev_c7
+    ModuleNotFoundError: No module named 'dev_c7'
+
+
+The full traceback has been saved in:
+/tmp/sphinx-err-nvyt22x1.log
+
+To report this error to the developers, please open an issue at <https://github.com/sphinx-doc/sphinx/issues/>. Thanks!
+Please also report this if it was a user error, so that a better error message can be provided next time.
+ERROR: InvocationError for command /scratch/hgv27681/work/dev-c7/.venv/bin/sphinx-build -EW --keep-going -T docs build/html (exited with code 2)

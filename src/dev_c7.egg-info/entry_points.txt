@@ -1,0 +1,2 @@
+[console_scripts]
+dev-c7 = dev_c7.__main__:main

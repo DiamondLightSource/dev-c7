@@ -1,0 +1,1039 @@
+action: pre-commit, msg: parallel pre-commit
+cwd: /scratch/hgv27681/work/dev-c7
+cmd: /scratch/hgv27681/work/dev-c7/.venv/bin/python3 .venv/lib/python3.13/site-packages/tox/__main__.py -p
+pre-commit create: /scratch/hgv27681/work/dev-c7/.tox/pre-commit
+pre-commit installed: accessible-pygments==0.0.5,alabaster==1.0.0,annotated-types==0.7.0,anyio==4.10.0,babel==2.17.0,beautifulsoup4==4.13.5,certifi==2025.8.3,cfgv==3.4.0,charset-normalizer==3.4.3,click==8.2.1,colorama==0.4.6,copier==9.10.1,coverage==7.10.6,-e git+ssh://git@github.com/DiamondLightSource/dev-c7.git@1e502e0889410da40332927366d73a20d067f181#egg=dev_c7,distlib==0.4.0,docutils==0.21.2,dunamai==1.25.0,filelock==3.19.1,funcy==2.0,h11==0.16.0,identify==2.6.13,idna==3.10,imagesize==1.4.1,iniconfig==2.1.0,Jinja2==3.1.6,jinja2-ansible-filters==1.3.2,markdown-it-py==3.0.0,MarkupSafe==3.0.2,mdit-py-plugins==0.5.0,mdurl==0.1.2,myst-parser==4.0.1,nodeenv==1.9.1,packaging==25.0,pathlib2==2.3.7.post1,pathspec==0.12.1,pipdeptree==2.28.0,platformdirs==4.4.0,pluggy==1.6.0,plumbum==1.9.0,pre_commit==4.3.0,prompt_toolkit==3.0.51,py==1.11.0,pydantic==2.11.7,pydantic_core==2.33.2,pydata-sphinx-theme==0.16.1,Pygments==2.19.2,pyright==1.1.405,pytest==8.4.1,pytest-cov==6.2.1,PyYAML==6.0.2,questionary==2.1.1,requests==2.32.5,roman-numerals-py==3.1.0,ruff==0.12.11,six==1.17.0,sniffio==1.3.1,snowballstemmer==3.0.1,soupsieve==2.8,Sphinx==8.2.3,sphinx-autobuild==2025.8.25,sphinx-copybutton==0.5.2,sphinx_design==0.6.1,sphinxcontrib-applehelp==2.0.0,sphinxcontrib-devhelp==2.0.0,sphinxcontrib-htmlhelp==2.1.0,sphinxcontrib-jsmath==1.0.1,sphinxcontrib-qthelp==2.0.0,sphinxcontrib-serializinghtml==2.0.0,starlette==0.47.3,tox==3.28.0,tox-direct==0.4,types-mock==5.2.0.20250809,typing-inspection==0.4.1,typing_extensions==4.15.0,urllib3==2.5.0,uvicorn==0.35.0,virtualenv==20.34.0,watchfiles==1.1.0,wcwidth==0.2.13,websockets==15.0.1
+pre-commit run-test-pre: PYTHONHASHSEED='1505122865'
+pre-commit run-test: commands[0] | pre-commit run --all-files --show-diff-on-failure
+[INFO] Installing environment for https://github.com/pre-commit/pre-commit-hooks.
+[INFO] Once installed this environment will be reused.
+[INFO] This may take a few minutes...
+check for added large files..............................................Passed
+check yaml...............................................................Failed
+- hook id: check-yaml
+- exit code: 1
+
+while parsing a flow node
+did not find expected node content
+  in "Charts/dev-c7/templates/deployment.yaml", line 6, column 7
+
+check for merge conflicts................................................Passed
+fix end of files.........................................................Failed
+- hook id: end-of-file-fixer
+- exit code: 1
+- files were modified by this hook
+
+Fixing README.md
+Fixing docs/explanations/why_dev_c7.rst
+Fixing edm-fonts/install-fonts.sh
+Fixing Charts/dev-c7/README.md
+Fixing docs/tutorials/continue.rst
+Fixing CONTRIBUTING.rst
+Fixing docs/how-to/podman.rst
+Fixing docs/tutorials/prompt.rst
+Fixing Dockerfile
+Fixing .vscode/extensions.json
+Fixing .vscode/tasks.json
+Fixing .vscode/launch.json
+Fixing docs/how-to/Dockerfile
+
+pre-commit hook(s) made changes.
+If you are seeing this message in CI, reproduce locally with: `pre-commit run --all-files`.
+To run `pre-commit` as part of git workflow, use `pre-commit install`.
+All changes made by hooks:
+diff --git a/.devcontainer/devcontainer.json b/.devcontainer/devcontainer.json
+deleted file mode 100644
+index 1f51c03..0000000
+--- a/.devcontainer/devcontainer.json
++++ /dev/null
+@@ -1,43 +0,0 @@
+-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+-// https://github.com/microsoft/vscode-dev-containers/tree/v0.194.0/containers/ubuntu
+-{
+-    "name": "dev-c7",
+-    "image": "ghcr.io/diamondlightsource/dev-c7:latest",
+-    "remoteEnv": {
+-        "DISPLAY": "${localEnv:DISPLAY}",
+-        "HOME": "${localEnv:HOME}",
+-        "SSH_AUTH_SOCK": "${localEnv:SSH_AUTH_SOCK}"
+-    },
+-    // these two lines mount the local workspace folder so that the path is the same inside and outside the container.
+-    "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind,consistency=cached",
+-    "workspaceFolder": "${localWorkspaceFolder}",
+-    // Set *default* container specific settings.json values on container create.
+-    "settings": {},
+-    // Add the IDs of extensions you want installed when the container is created.
+-    "extensions": [
+-        "ms-vscode.cpptools",
+-        "ms-python.vscode-pylance",
+-        "ryanluker.vscode-coverage-gutters",
+-        "mhutchie.git-graph",
+-        "eamodio.gitlens",
+-        "redhat.vscode-yaml",
+-        "nsd.vscode-epics"
+-    ],
+-    "mounts": [
+-        "source=/dls,target=/dls,type=bind,consistency=cached,bind-propagation=shared",
+-        "source=/dls_sw,target=/dls_sw,type=bind,consistency=cached,bind-propagation=shared",
+-        "source=/home,target=/home,type=bind,consistency=cached,bind-propagation=shared",
+-        "source=/scratch/,target=/scratch/,type=bind,consistency=cached",
+-        "source=/tmp,target=/tmp,type=bind,consistency=cached",
+-        "source=${localEnv:SSH_AUTH_SOCK},target=${localEnv:SSH_AUTH_SOCK},type=bind,consistency=cached"
+-    ],
+-    "runArgs": [
+-        "-e HOME",
+-        "--net=host",
+-        "--security-opt=label=disable",
+-        "--userns=keep-id",
+-        "--annotation=run.oci.keep_original_groups=1",
+-        "--storage-opt=ignore_chown_errors=true",
+-        "--runtime=/usr/bin/crun"
+-    ]
+-}
+\ No newline at end of file
+diff --git a/.github/workflows/_dist.yml b/.github/workflows/_dist.yml
+deleted file mode 100644
+index b1c4c93..0000000
+--- a/.github/workflows/_dist.yml
++++ /dev/null
+@@ -1,36 +0,0 @@
+-on:
+-  workflow_call:
+-
+-jobs:
+-  build:
+-    runs-on: "ubuntu-latest"
+-
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v4
+-        with:
+-          # Need this to get version number from last tag
+-          fetch-depth: 0
+-
+-      - name: Build sdist and wheel
+-        run: >
+-          export SOURCE_DATE_EPOCH=$(git log -1 --pretty=%ct) &&
+-          pipx run build
+-
+-      - name: Upload sdist and wheel as artifacts
+-        uses: actions/upload-artifact@v4
+-        with:
+-          name: dist
+-          path: dist
+-
+-      - name: Check for packaging errors
+-        run: pipx run twine check --strict dist/*
+-
+-      - name: Install produced wheel
+-        uses: ./.github/actions/install_requirements
+-        with:
+-          pip-install: dist/*.whl
+-
+-      - name: Test module --version works using the installed wheel
+-        # If more than one module in src/ replace with module name to test
+-        run: python -m $(ls --hide='*.egg-info' src | head -1) --version
+diff --git a/.github/workflows/_test.yml b/.github/workflows/_test.yml
+deleted file mode 100644
+index 552b29d..0000000
+--- a/.github/workflows/_test.yml
++++ /dev/null
+@@ -1,62 +0,0 @@
+-on:
+-  workflow_call:
+-    inputs:
+-      python-version:
+-        type: string
+-        description: The version of python to install
+-        required: true
+-      runs-on:
+-        type: string
+-        description: The runner to run this job on
+-        required: true
+-    secrets:
+-      CODECOV_TOKEN:
+-        required: true
+-
+-env:
+-  # https://github.com/pytest-dev/pytest/issues/2042
+-  PY_IGNORE_IMPORTMISMATCH: "1"
+-
+-jobs:
+-  run:
+-    runs-on: ${{ inputs.runs-on }}
+-
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v4
+-        with:
+-          # Need this to get version number from last tag
+-          fetch-depth: 0
+-
+-      - if: inputs.python-version == 'dev'
+-        name: Install dev versions of python packages
+-        uses: ./.github/actions/install_requirements
+-
+-      - if: inputs.python-version == 'dev'
+-        name: Write the requirements as an artifact
+-        run: pip freeze --exclude-editable > /tmp/dev-requirements.txt
+-
+-      - if: inputs.python-version == 'dev'
+-        name: Upload dev-requirements.txt
+-        uses: actions/upload-artifact@v4
+-        with:
+-          name: dev-requirements
+-          path: /tmp/dev-requirements.txt
+-
+-      - if: inputs.python-version != 'dev'
+-        name: Install latest versions of python packages
+-        uses: ./.github/actions/install_requirements
+-        with:
+-          python-version: ${{ inputs.python-version }}
+-          pip-install: ".[dev]"
+-
+-      - name: Run tests
+-        run: tox -e tests
+-
+-      - name: Upload coverage to Codecov
+-        uses: codecov/codecov-action@v5
+-        with:
+-          name: ${{ inputs.python-version }}/${{ inputs.runs-on }}
+-          files: cov.xml
+-        env:
+-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index cb59381..0679e88 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -5,33 +5,15 @@ on:
+     branches:
+       - main
+     tags:
+-      - '*'
++      - "*"
+   pull_request:
+ 
+ jobs:
+-
+   lint:
+     uses: ./.github/workflows/_tox.yml
+     with:
+       tox: pre-commit,type-checking
+ 
+-  test:
+-    strategy:
+-      matrix:
+-        runs-on: ["ubuntu-latest"] # can add windows-latest, macos-latest
+-        python-version: ["3.11", "3.12", "3.13"]
+-        include:
+-          # Include one that runs in the dev environment
+-          - runs-on: "ubuntu-latest"
+-            python-version: "dev"
+-      fail-fast: false
+-    uses: ./.github/workflows/_test.yml
+-    with:
+-      runs-on: ${{ matrix.runs-on }}
+-      python-version: ${{ matrix.python-version }}
+-    secrets:
+-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+-
+   container:
+     needs: test
+     if: always()
+@@ -45,10 +27,6 @@ jobs:
+   docs:
+     uses: ./.github/workflows/_docs.yml
+ 
+-
+-  dist:
+-    uses: ./.github/workflows/_dist.yml
+-  
+   release:
+     needs: [dist, test, docs]
+     if: github.ref_type == 'tag'
+diff --git a/.github/workflows/periodic.yml b/.github/workflows/periodic.yml
+deleted file mode 100644
+index e2a0fd1..0000000
+--- a/.github/workflows/periodic.yml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-name: Periodic
+-
+-on:
+-  workflow_dispatch:
+-  schedule:
+-    # Run weekly to check URL links still resolve
+-    - cron: "0 8 * * WED"
+-
+-jobs:
+-  linkcheck:
+-    uses: ./.github/workflows/_tox.yml
+-    with:
+-      tox: docs build -- -b linkcheck
+diff --git a/.pre-commit-config.yaml b/.pre-commit-config.yaml
+index ef68f8a..b086083 100644
+--- a/.pre-commit-config.yaml
++++ b/.pre-commit-config.yaml
+@@ -6,19 +6,3 @@ repos:
+       - id: check-yaml
+       - id: check-merge-conflict
+       - id: end-of-file-fixer
+-
+-  - repo: local
+-    hooks:
+-      - id: ruff
+-        name: lint with ruff
+-        language: system
+-        entry: ruff check --force-exclude --fix
+-        types: [python]
+-        require_serial: true
+-
+-      - id: ruff-format
+-        name: format with ruff
+-        language: system
+-        entry: ruff format --force-exclude
+-        types: [python]
+-        require_serial: true
+diff --git a/.vscode/extensions.json b/.vscode/extensions.json
+index 734f215..fee986e 100644
+--- a/.vscode/extensions.json
++++ b/.vscode/extensions.json
+@@ -4,4 +4,4 @@
+         "ms-python.python",
+         "ryanluker.vscode-coverage-gutters"
+     ]
+-}
+\ No newline at end of file
++}
+diff --git a/.vscode/launch.json b/.vscode/launch.json
+index f8fcdb4..ce1b374 100644
+--- a/.vscode/launch.json
++++ b/.vscode/launch.json
+@@ -22,4 +22,4 @@
+             },
+         }
+     ]
+-}
+\ No newline at end of file
++}
+diff --git a/.vscode/tasks.json b/.vscode/tasks.json
+index ff78a11..82fa1ae 100644
+--- a/.vscode/tasks.json
++++ b/.vscode/tasks.json
+@@ -13,4 +13,4 @@
+             "problemMatcher": [],
+         }
+     ]
+-}
+\ No newline at end of file
++}
+diff --git a/CONTRIBUTING.rst b/CONTRIBUTING.rst
+index 2e194bf..63c7c1b 100644
+--- a/CONTRIBUTING.rst
++++ b/CONTRIBUTING.rst
+@@ -77,4 +77,3 @@ To make a new release, please follow this checklist:
+ - GitHub Actions will publish the image to ghcr.io and the docs to GitHub Pages
+ 
+ .. _release: https://github.com/diamondlightsource/dev-c7/releases
+-
+diff --git a/Charts/dev-c7/README.md b/Charts/dev-c7/README.md
+index 6b2e8ef..8387892 100644
+--- a/Charts/dev-c7/README.md
++++ b/Charts/dev-c7/README.md
+@@ -1,3 +1,3 @@
+ A Helm Chart for deploying the dev-c7 container into a DLS Cluster.
+ 
+-Intended for runnhing legacy IOCs in a RHEL8 or higher DLS worker node.
+\ No newline at end of file
++Intended for runnhing legacy IOCs in a RHEL8 or higher DLS worker node.
+diff --git a/Dockerfile b/Dockerfile
+index e77cbc8..e2563be 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -1,31 +1,79 @@
+-# The devcontainer should use the developer target and run as root with podman
+-# or docker with user namespaces.
+-ARG PYTHON_VERSION=3.11
+-FROM python:${PYTHON_VERSION} AS developer
+-
+-# Add any system dependencies for the developer/build environment here
+-RUN apt-get update && apt-get install -y --no-install-recommends \
+-    graphviz \
+-    && rm -rf /var/lib/apt/lists/*
+-
+-# Set up a virtual environment and put it in PATH
+-RUN python -m venv /venv
+-ENV PATH=/venv/bin:$PATH
+-
+-# The build stage installs the context into the venv
+-FROM developer AS build
+-# Requires buildkit 0.17.0
+-COPY --chmod=o+wrX . /workspaces/dev-c7
+-WORKDIR /workspaces/dev-c7
+-RUN touch dev-requirements.txt && pip install -c dev-requirements.txt .
+-
+-
+-# The runtime stage copies the built venv into a slim runtime container
+-FROM python:${PYTHON_VERSION}-slim AS runtime
+-# Add apt-get system dependecies for runtime here if needed
+-COPY --from=build /venv/ /venv/
+-ENV PATH=/venv/bin:$PATH
+-
+-# change this entrypoint if it is not the same as the repo
+-ENTRYPOINT ["dev-c7"]
+-CMD ["--version"]
++# Dockerfile for getting DLS RHEL7 dev environment working in a container
++# hosted on RHEL8
++#
++# This is a stopgap so that we can use effort to promote the
++# kubernetes model https://github.com/diamondlightsource instead of spending
++# effort in rebuilding our toolchain for RHEL8
++
++FROM centos:7
++
++# environment
++ENV LANG=en_US.UTF-8
++ENV LC_ALL=en_US.UTF-8
++ENV LC_CTYPE=en_US.UTF-8
++ENV MODULEPATH=/etc/scl/modulefiles:/etc/scl/modulefiles:/etc/scl/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/share/modulefiles:/dls_sw/apps/Modules/modulefiles:/dls_sw/etc/modulefiles:/home/hgv27681/privatemodules:/dls_sw/prod/tools/RHEL8-x86_64/defaults/modulefiles
++
++# switch to the vault for centos packages!
++RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo && \
++    sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo && \
++    sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo
++
++# make QT not complain
++ENV QT_X11_NO_MITSHM=1
++ENV LIBGL_ALWAYS_INDIRECT=1
++
++RUN yum update -y && \
++    # dev tools and libraries
++    yum groupinstall -y "Development Tools" && \
++    yum install -y glibc.i686 redhat-lsb-core libusbx net-snmp-libs environment-modules git2u net-tools screen cmake lapack-devel readline-devel pcre-devel boost-devel libpcap-devel numactl-libs vim dbus-x11 bind-utils libssh2-devel xorg-x11-server-Xvfb \
++    # edm dependencies
++    epel-release giflib-devel libXmu-devel libpng-devel libXtst-devel zlib-devel xorg-x11-proto-devel motif-devel libX11-devel libXp-devel libXpm-devel libtirpc-devel \
++    # areaDetector dependencies
++    libxml2-devel libjpeg-turbo-devel libtiff-devel glib2-devel \
++    # Odin dependencies
++    hdf5-devel zeromq-devel librdkafka-devel \
++    # QT4 dependencies
++    pyqt4-devel PackageKit-gtk3-module libcanberra-gtk2 mesa-dri-drivers.x86_64 xcb-util xcb-util-devel libxcb.x86_64 libxkbcommon-x11 \
++    # dls-remote-desktop-support
++    xfreerdp zenity \
++    # useful tools
++    sudo meld tk dejavu-sans-mono-fonts gnome-terminal xterm xmessage evince eog firefox java openldap-clients ant && \
++    # These packages are not found in the initial install so try again
++    yum install -y zeromq-devel git2u meld && \
++    # install libnet library for EPICS module builds
++    yum install -y libnet libnet-devel && \
++    # clean up caches
++    yum clean all
++
++#install the required libusb developer library
++RUN yum remove -y libusbx && \
++    curl -SL http://rpmfind.net/linux/opensuse/distribution/leap/15.5/repo/oss/x86_64/libusb-1_0-0-1.0.24-150400.3.3.1.x86_64.rpm -o /tmp/libusb-1.rpm && \
++    yum install -y /tmp/libusb-1.rpm && \
++    rm /tmp/libusb-1.rpm && \
++    curl -SL https://rpmfind.net/linux/opensuse/distribution/leap/15.5/repo/oss/x86_64/libusb-1_0-devel-1.0.24-150400.3.3.1.x86_64.rpm -o /tmp/libusb-devel-1.rpm && \
++    yum install -y /tmp/libusb-devel-1.rpm && \
++    rm /tmp/libusb-devel-1.rpm
++
++# full sudo rights inside the container
++COPY /sudoers /etc/sudoers
++
++# Workaround to ensure all locales are available
++RUN sed -i "/override_install_langs=en_US/d" /etc/yum.conf
++RUN yum reinstall -y glibc-common
++
++# set container time to BST
++RUN ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
++
++# latest git from the endpoint repo https://computingforgeeks.com/install-git-2-on-centos-7/
++RUN yum remove -y git git-core && \
++    # libcurl-devel for git-remote-https
++    yum -y install libcurl-devel && \
++    yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm && \
++    yum -y install git git-core
++
++# change the nobody account and group IDs to match RedHat
++RUN sed -i 's/99:99/65534:65534/' /etc/passwd && \
++    sed -i 's/:99:/:65534:/' /etc/group
++
++
++RUN
+diff --git a/README.md b/README.md
+index 35a7f15..eab3163 100644
+--- a/README.md
++++ b/README.md
+@@ -3,35 +3,33 @@
+ 
+ [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+ 
+-# dev_c7
++# DLS RHEL7 in a Box Developer Container
+ 
+ A Diamond Light Source specific developer container
+ 
+-This is where you should write a short paragraph that describes what your module does,
+-how it does it, and why people should use it.
++This repo defines a container and launch script for re-creating the DLS Controls RHEL7 developer environment on a RHEL8 Workstation.
++
++This container can also be used for running traditional DLS EPICS IOCs in Kubernetes (i.e. IOCs published in /dls_sw/prod or /dls_sw/work).
+ 
+ Source          | <https://github.com/DiamondLightSource/dev-c7>
+ :---:           | :---:
+-Docker          | `docker run ghcr.io/diamondlightsource/dev-c7:latest`
++Docker          | `podman run ghcr.io/diamondlightsource/dev-c7:latest`
+ Documentation   | <https://diamondlightsource.github.io/dev-c7>
+ Releases        | <https://github.com/DiamondLightSource/dev-c7/releases>
+ 
+-This is where you should put some images or code snippets that illustrate
+-some relevant examples. If it is a library then you might put some
+-introductory code here:
++## Quick Start
+ 
+-```python
+-from dev_c7 import __version__
++See the tutorial at `Quick Start <https://diamondlightsource.github.io/dev-c7/main/tutorials/start.html>`_.
+ 
+-print(f"Hello dev_c7 {__version__}")
+-```
++<!-- README only content. Anything below this line won't be included in index.md -->
+ 
+-Or if it is a commandline tool then you might put some example commands here:
++See <https://diamondlightsource.github.io/dev-c7> for the full documentation.
+ 
+-```
+-python -m dev_c7 --version
+-```
++## Notes
+ 
+-<!-- README only content. Anything below this line won't be included in index.md -->
++This project has had the Python Copier Template applied from <https://github.com/DiamondLightSource/python-copier-template>. It is not a python project but uses the template for the following features:-
+ 
+-See https://diamondlightsource.github.io/dev-c7 for more detailed documentation.
++- Building and publishing documentation
++- Building and publishing a container image
++- Building and publishing a helm chart
++- Building schema for the helm chart and releasing that schema
+diff --git a/README.rst b/README.rst
+deleted file mode 100644
+index 1dfa1c8..0000000
+--- a/README.rst
++++ /dev/null
+@@ -1,43 +0,0 @@
+-DLS RHEL7 in a Box Developer Container
+-======================================
+-
+-|code_ci| |docs_ci| |license|
+-
+-A Diamond Light Source specific developer container.
+-
+-This repo defines a container and launch script for re-creating the
+-DLS Controls RHEL7 developer environment on a RHEL8 Workstation.
+-
+-============== ==============================================================
+-Source code    https://github.com/diamondlightsource/dev-c7
+-Documentation  https://diamondlightsource.github.io/dev-c7
+-Releases       https://github.com/diamondlightsource/dev-c7/releases
+-Images         https://ghcr.io/diamondlightsource/dev-c7
+-============== ==============================================================
+-
+-Quick Start
+-===========
+-
+-See the tutorial at `Quick Start <https://diamondlightsource.github.io/dev-c7/main/tutorials/start.html>`_.
+-
+-
+-
+-.. |code_ci| image:: https://github.com/diamondlightsource/dev-c7/workflows/Code%20CI/badge.svg?branch=main
+-    :target: https://github.com/diamondlightsource/dev-c7/actions?query=workflow%3A%22Code+CI%22
+-    :alt: Code CI
+-
+-.. |docs_ci| image:: https://github.com/diamondlightsource/dev-c7/workflows/Docs%20CI/badge.svg?branch=main
+-    :target: https://github.com/diamondlightsource/dev-c7/actions?query=workflow%3A%22Docs+CI%22
+-    :alt: Docs CI
+-
+-.. |license| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
+-    :target: https://opensource.org/licenses/Apache-2.0
+-    :alt: Apache License
+-
+-..
+-    Anything below this line is used when viewing README.rst and will be replaced
+-    when included in index.rst
+-
+-See https://diamondlightsource.github.io/dev-c7 for detailed documentation.
+-
+-.. |quick| target:: tutorials/start.html
+\ No newline at end of file
+diff --git a/build-dev-c7.sh b/build-dev-c7.sh
+index c77c92f..7062f20 100755
+--- a/build-dev-c7.sh
++++ b/build-dev-c7.sh
+@@ -6,7 +6,7 @@ set -e
+ podman build\
+     --network host \
+     -t ${name}:latest \
+-    ./docker
++    .
+ 
+ 
+ # read -r -p "dev-c7 built OK. Push to ${name}:${1} [y/N] " response
+diff --git a/docker/Dockerfile b/docker/Dockerfile
+deleted file mode 100644
+index e29ddc0..0000000
+--- a/docker/Dockerfile
++++ /dev/null
+@@ -1,79 +0,0 @@
+-# Dockerfile for getting DLS RHEL7 dev environment working in a container
+-# hosted on RHEL8
+-#
+-# This is a stopgap so that we can use effort to promote the
+-# kubernetes model https://github.com/diamondlightsource instead of spending
+-# effort in rebuilding our toolchain for RHEL8
+-
+-FROM centos:7
+-
+-# environment
+-ENV LANG=en_US.UTF-8
+-ENV LC_ALL=en_US.UTF-8
+-ENV LC_CTYPE=en_US.UTF-8
+-ENV MODULEPATH=/etc/scl/modulefiles:/etc/scl/modulefiles:/etc/scl/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/share/modulefiles:/dls_sw/apps/Modules/modulefiles:/dls_sw/etc/modulefiles:/home/hgv27681/privatemodules:/dls_sw/prod/tools/RHEL8-x86_64/defaults/modulefiles
+-
+-# switch to the vault for centos packages!
+-RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo && \
+-    sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo && \
+-    sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo
+-
+-# make QT not complain
+-ENV QT_X11_NO_MITSHM=1
+-ENV LIBGL_ALWAYS_INDIRECT=1
+-
+-RUN yum update -y && \
+-    # dev tools and libraries
+-    yum groupinstall -y "Development Tools" && \
+-    yum install -y glibc.i686 redhat-lsb-core libusbx net-snmp-libs environment-modules git2u net-tools screen cmake lapack-devel readline-devel pcre-devel boost-devel libpcap-devel numactl-libs vim dbus-x11 bind-utils libssh2-devel xorg-x11-server-Xvfb \
+-    # edm dependencies
+-    epel-release giflib-devel libXmu-devel libpng-devel libXtst-devel zlib-devel xorg-x11-proto-devel motif-devel libX11-devel libXp-devel libXpm-devel libtirpc-devel \
+-    # areaDetector dependencies
+-    libxml2-devel libjpeg-turbo-devel libtiff-devel glib2-devel \
+-    # Odin dependencies
+-    hdf5-devel zeromq-devel librdkafka-devel \
+-    # QT4 dependencies
+-    pyqt4-devel PackageKit-gtk3-module libcanberra-gtk2 mesa-dri-drivers.x86_64 xcb-util xcb-util-devel libxcb.x86_64 libxkbcommon-x11 \
+-    # dls-remote-desktop-support
+-    xfreerdp zenity \
+-    # useful tools
+-    sudo meld tk dejavu-sans-mono-fonts gnome-terminal xterm xmessage evince eog firefox java openldap-clients ant && \
+-    # These packages are not found in the initial install so try again
+-    yum install -y zeromq-devel git2u meld && \
+-    # install libnet library for EPICS module builds
+-    yum install -y libnet libnet-devel && \
+-    # clean up caches
+-    yum clean all
+-
+-#install the required libusb developer library
+-RUN yum remove -y libusbx && \
+-    curl -SL http://rpmfind.net/linux/opensuse/distribution/leap/15.5/repo/oss/x86_64/libusb-1_0-0-1.0.24-150400.3.3.1.x86_64.rpm -o /tmp/libusb-1.rpm && \
+-    yum install -y /tmp/libusb-1.rpm && \
+-    rm /tmp/libusb-1.rpm && \
+-    curl -SL https://rpmfind.net/linux/opensuse/distribution/leap/15.5/repo/oss/x86_64/libusb-1_0-devel-1.0.24-150400.3.3.1.x86_64.rpm -o /tmp/libusb-devel-1.rpm && \
+-    yum install -y /tmp/libusb-devel-1.rpm && \
+-    rm /tmp/libusb-devel-1.rpm
+-
+-# full sudo rights inside the container
+-COPY /sudoers /etc/sudoers
+-
+-# Workaround to ensure all locales are available
+-RUN sed -i "/override_install_langs=en_US/d" /etc/yum.conf
+-RUN yum reinstall -y glibc-common
+-
+-# set container time to BST
+-RUN ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
+-
+-# latest git from the endpoint repo https://computingforgeeks.com/install-git-2-on-centos-7/
+-RUN yum remove -y git git-core && \
+-    # libcurl-devel for git-remote-https
+-    yum -y install libcurl-devel && \
+-    yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm && \
+-    yum -y install git git-core
+-
+-# change the nobody account and group IDs to match RedHat
+-RUN sed -i 's/99:99/65534:65534/' /etc/passwd && \
+-    sed -i 's/:99:/:65534:/' /etc/group
+-
+-
+-RUN
+\ No newline at end of file
+diff --git a/docker/sudoers b/docker/sudoers
+deleted file mode 100644
+index 000d16e..0000000
+--- a/docker/sudoers
++++ /dev/null
+@@ -1,4 +0,0 @@
+-Defaults    env_reset
+-
+-root    ALL=(ALL) ALL
+-ALL ALL=(ALL) NOPASSWD: ALL
+diff --git a/docs/explanations.md b/docs/explanations.md
+index 73ab289..ccb51d5 100644
+--- a/docs/explanations.md
++++ b/docs/explanations.md
+@@ -6,5 +6,8 @@ Explanations of how it works and why it works that way.
+ :maxdepth: 1
+ :glob:
+ 
+-explanations/*
++explanations/how_it_works
++explanations/differences
++explanations/why_dev_c7
++explanations/decisions
+ ```
+diff --git a/docs/explanations.rst b/docs/explanations.rst
+deleted file mode 100644
+index 888750e..0000000
+--- a/docs/explanations.rst
++++ /dev/null
+@@ -1,13 +0,0 @@
+-:orphan:
+-
+-Explanations
+-============
+-
+-Explanation of how the library works and why it works that way.
+-
+-.. toctree::
+-    :caption: Explanations
+-
+-    explanations/how_it_works
+-    explanations/differences
+-    explanations/why_dev_c7
+diff --git a/docs/explanations/why_dev_c7.rst b/docs/explanations/why_dev_c7.rst
+index 7bebcd6..748c016 100644
+--- a/docs/explanations/why_dev_c7.rst
++++ b/docs/explanations/why_dev_c7.rst
+@@ -21,4 +21,4 @@ With the new approach under development it would be a waste of effort to
+ port our legacy toolchain to RHEL8 only to replace it shortly afterward.
+ The container based approach decouples the tools and IOCs from the
+ host operating system so any future OS upgrades should be far 
+-smoother.
+\ No newline at end of file
++smoother.
+diff --git a/docs/how-to.rst b/docs/how-to.rst
+deleted file mode 100644
+index 591026d..0000000
+--- a/docs/how-to.rst
++++ /dev/null
+@@ -1,15 +0,0 @@
+-:orphan:
+-
+-How-to Guides
+-=============
+-
+-Practical step-by-step guides for the more experienced user.
+-
+-.. toctree::
+-    :caption: How-to Guides
+-
+-    how-to/containers
+-    how-to/troubleshooting
+-    how-to/deriving
+-    how-to/podman
+-    
+diff --git a/docs/how-to/Dockerfile b/docs/how-to/Dockerfile
+index 0f65919..bdae04a 100644
+--- a/docs/how-to/Dockerfile
++++ b/docs/how-to/Dockerfile
+@@ -6,4 +6,4 @@ RUN yum update -y && \
+ 
+ ENV MY_VAR="useful info"
+ 
+-COPY /my-useful-file.sh /usr/bin
+\ No newline at end of file
++COPY /my-useful-file.sh /usr/bin
+diff --git a/docs/how-to/containers.rst b/docs/how-to/containers.rst
+index eaf4af8..db5fe19 100644
+--- a/docs/how-to/containers.rst
++++ b/docs/how-to/containers.rst
+@@ -85,7 +85,7 @@ Below is the current Dockerfile, read on for an explanation of the
+ commands used.
+ 
+ 
+-.. literalinclude:: ../../docker/Dockerfile
++.. literalinclude:: ../../Dockerfile
+    :language: docker
+ 
+ 
+diff --git a/docs/how-to/deriving.rst b/docs/how-to/deriving.rst
+index 2962104..6b17d98 100644
+--- a/docs/how-to/deriving.rst
++++ b/docs/how-to/deriving.rst
+@@ -13,7 +13,7 @@ specific requirements e.g.
+ .. note::
+     If the changes you need are likely to be useful to all developers then
+     you should consider contributing to the base image for dev-c7.
+-    See `../reference/contributing`
++    See `contribute`
+ 
+ To make your own derived container.
+ 
+@@ -30,4 +30,4 @@ that the build is running as root inside the container so it is allowed
+ to write to a system folder.
+ 
+ .. literalinclude:: Dockerfile
+-   :language: docker
+\ No newline at end of file
++   :language: docker
+diff --git a/docs/how-to/podman.rst b/docs/how-to/podman.rst
+index d2bbbb5..788128b 100644
+--- a/docs/how-to/podman.rst
++++ b/docs/how-to/podman.rst
+@@ -31,4 +31,3 @@ The additional features are:
+     - provide a much faster container build and run
+ #. put the root of podman scratch files in /scratch/<fed_id>/podman 
+     - avoid loosing all scratch your files on ``podman system reset``
+-
+diff --git a/docs/index.rst b/docs/index.rst
+deleted file mode 100644
+index 9bde8ad..0000000
+--- a/docs/index.rst
++++ /dev/null
+@@ -1,48 +0,0 @@
+-.. include:: ../README.rst
+-    :end-before: when included in index.rst
+-
+-
+-How the documentation is structured
+------------------------------------
+-
+-Documentation is split into four categories, also accessible from links in the
+-side-bar.
+-
+-.. rst-class:: columns
+-
+-`tutorials`
+-~~~~~~~~~~~
+-
+-.. include:: tutorials.rst
+-    :start-after: =========
+-
+-.. rst-class:: columns
+-
+-`how-to`
+-~~~~~~~~
+-
+-.. include:: how-to.rst
+-    :start-after: =============
+-
+-.. rst-class:: columns
+-
+-`explanations`
+-~~~~~~~~~~~~~~
+-
+-.. include:: explanations.rst
+-    :start-after: ============
+-
+-.. rst-class:: columns
+-
+-`reference`
+-~~~~~~~~~~~
+-
+-.. include:: reference.rst
+-    :start-after: =========
+-
+-.. rst-class:: endcolumns
+-
+-About the documentation
+-~~~~~~~~~~~~~~~~~~~~~~~
+-
+-`Why is the documentation structured this way? <https://documentation.divio.com>`_
+diff --git a/docs/make_docs.sh b/docs/make_docs.sh
+deleted file mode 100755
+index 5e4f20e..0000000
+--- a/docs/make_docs.sh
++++ /dev/null
+@@ -1,16 +0,0 @@
+-#!/bin/bash
+-
+-# a script to locally test documentation build.
+-
+-root=$(realpath $(dirname ${BASH_SOURCE[0]})/..)
+-
+-set -e 
+-
+-if [[ ! -d "${root}/.venv" ]] ; then
+-    virtualenv "${root}/.venv" --python python3
+-    source "${root}/.venv/bin/activate"
+-    pip install -r "${root}/requirements.txt"
+-fi
+-
+-source "${root}/.venv/bin/activate"
+-sphinx-build -EWT --keep-going docs ${root}/build/html "${@}"
+\ No newline at end of file
+diff --git a/docs/reference.rst b/docs/reference.rst
+deleted file mode 100644
+index e392b79..0000000
+--- a/docs/reference.rst
++++ /dev/null
+@@ -1,12 +0,0 @@
+-:orphan:
+-
+-Reference
+-=========
+-
+-Practical step-by-step guides for the more experienced user.
+-
+-.. toctree::
+-    :caption: Reference
+-
+-    reference/contributing
+-    Releases <https://github.com/diamondlightsource/dev-c7/releases>
+diff --git a/docs/reference/contributing.rst b/docs/reference/contributing.rst
+deleted file mode 100644
+index ac7b6bc..0000000
+--- a/docs/reference/contributing.rst
++++ /dev/null
+@@ -1 +0,0 @@
+-.. include:: ../../CONTRIBUTING.rst
+diff --git a/docs/tutorials.md b/docs/tutorials.md
+index 1fe66c5..938e8eb 100644
+--- a/docs/tutorials.md
++++ b/docs/tutorials.md
+@@ -6,5 +6,8 @@ Tutorials for installation and typical usage. New users start here.
+ :maxdepth: 1
+ :glob:
+ 
+-tutorials/*
++tutorials/start
++tutorials/continue
++tutorials/vscode
++tutorials/prompt
+ ```
+diff --git a/docs/tutorials.rst b/docs/tutorials.rst
+deleted file mode 100644
+index 78cc409..0000000
+--- a/docs/tutorials.rst
++++ /dev/null
+@@ -1,14 +0,0 @@
+-:orphan:
+-
+-Tutorials
+-=========
+-
+-Tutorials for installation, library and commandline usage. New users start here.
+-
+-.. toctree::
+-    :caption: Tutorials
+-
+-    tutorials/start
+-    tutorials/continue
+-    tutorials/vscode
+-    tutorials/prompt
+diff --git a/docs/tutorials/continue.rst b/docs/tutorials/continue.rst
+index 5117b67..3ef1796 100644
+--- a/docs/tutorials/continue.rst
++++ b/docs/tutorials/continue.rst
+@@ -113,4 +113,3 @@ If the script has acquired new features you may want to update as follows::
+ 
+ Also update your devcontainer.json to match for projects you want to also
+ upgrade.
+-
+diff --git a/docs/tutorials/installation.md b/docs/tutorials/installation.md
+deleted file mode 100644
+index ed254a9..0000000
+--- a/docs/tutorials/installation.md
++++ /dev/null
+@@ -1,42 +0,0 @@
+-# Installation
+-
+-## Check your version of python
+-
+-You will need python 3.11 or later. You can check your version of python by
+-typing into a terminal:
+-
+-```
+-$ python3 --version
+-```
+-
+-## Create a virtual environment
+-
+-It is recommended that you install into a “virtual environment” so this
+-installation will not interfere with any existing Python software:
+-
+-```
+-$ python3 -m venv /path/to/venv
+-$ source /path/to/venv/bin/activate
+-```
+-
+-## Installing the library
+-
+-You can now use `pip` to install the library and its dependencies:
+-
+-```
+-$ python3 -m pip install dev-c7
+-```
+-
+-If you require a feature that is not currently released you can also install
+-from github:
+-
+-```
+-$ python3 -m pip install git+https://github.com/DiamondLightSource/dev-c7.git
+-```
+-
+-The library should now be installed and the commandline interface on your path.
+-You can check the version that has been installed by typing:
+-
+-```
+-$ dev-c7 --version
+-```
+diff --git a/docs/tutorials/prompt.rst b/docs/tutorials/prompt.rst
+index 5fd11b6..048c51a 100644
+--- a/docs/tutorials/prompt.rst
++++ b/docs/tutorials/prompt.rst
+@@ -45,4 +45,3 @@ can pass a hostname of your choice as follows.
+ 
+     If you are working remotely and launching the container from an
+     ssh session changing the hostname will cause X11 apps to fail.
+-
+diff --git a/edm-fonts/install-fonts.sh b/edm-fonts/install-fonts.sh
+index d7a8848..c188350 100644
+--- a/edm-fonts/install-fonts.sh
++++ b/edm-fonts/install-fonts.sh
+@@ -6,4 +6,4 @@ sudo yum install https://github.com/diamondlightsource/dev-c7/raw/main/edm-fonts
+ sudo yum install https://github.com/diamondlightsource/dev-c7/raw/main/edm-fonts/dls-courier-1.0-1.noarch.rpm
+ sudo yum install https://github.com/diamondlightsource/dev-c7/raw/main/edm-fonts/dls-msttcore-1.0-1.noarch.rpm
+ 
+-echo Done
+\ No newline at end of file
++echo Done
+diff --git a/requirements.txt b/requirements.txt
+deleted file mode 100644
+index 324276b..0000000
+--- a/requirements.txt
++++ /dev/null
+@@ -1,6 +0,0 @@
+-pre-commit
+-sphinx-rtd-theme-github-versions
+-sphinx-apischema
+-black
+-mypy
+-flake8
+diff --git a/tests/conftest.py b/tests/conftest.py
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/tests/test_cli.py b/tests/test_cli.py
+deleted file mode 100644
+index 723c630..0000000
+--- a/tests/test_cli.py
++++ /dev/null
+@@ -1,9 +0,0 @@
+-import subprocess
+-import sys
+-
+-from dev_c7 import __version__
+-
+-
+-def test_cli_version():
+-    cmd = [sys.executable, "-m", "dev_c7", "--version"]
+-    assert subprocess.check_output(cmd).decode().strip() == __version__
+ERROR: InvocationError for command /scratch/hgv27681/work/dev-c7/.venv/bin/pre-commit run --all-files --show-diff-on-failure (exited with code 1)

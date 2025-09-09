@@ -1,0 +1,783 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Managing Containers and Images on a Workstation &#8212; dev-c7 2025.9.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=f9c70d97"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'how-to/containers';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://DiamondLightSource.github.io/dev-c7/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2025.9.1';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="icon" href="../_static/dls-logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contribute to the project" href="contribute.html" />
+    <link rel="prev" title="How-to Guides" href="../how-to.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2025.9.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/dls-logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/dls-logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">dev-c7</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../how-to.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../explanations.html">
+    Explanations
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/DiamondLightSource/dev-c7" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/dev-c7" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-cube fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../how-to.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../explanations.html">
+    Explanations
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/DiamondLightSource/dev-c7" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/dev-c7" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-cube fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Managing Containers and Images on a Workstation</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute to the project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deriving.html">Derive your own container image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="podman.html">Updating Podman Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run-container.html">Run in a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../how-to.html" class="nav-link">How-to Guides</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Managing Containers and Images on a Workstation</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="managing-containers-and-images-on-a-workstation">
+<h1>Managing Containers and Images on a Workstation<a class="headerlink" href="#managing-containers-and-images-on-a-workstation" title="Link to this heading">#</a></h1>
+<section id="definitions">
+<h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h2>
+<p><strong>Images</strong> are snapshots of a filesystem used to bootstrap a container.</p>
+<p><strong>Containers</strong> are isolated execution environments with their file system based
+upon an Image.</p>
+</section>
+<section id="monitoring">
+<h2>Monitoring<a class="headerlink" href="#monitoring" title="Link to this heading">#</a></h2>
+<p>You can see which <strong>Containers</strong> are running on your system with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">podman</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-a</span></code> means it will also show stopped containers.</p>
+<p>You can see what <strong>Images</strong> are cached on your system with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">podman</span> <span class="n">images</span>
+</pre></div>
+</div>
+<p>Images are usually cached from a container registry like ghcr.io. They can
+usually be deleted without any consequence except waiting for the download
+next time you launch a container that uses them.</p>
+</section>
+<section id="cleaning-up-space">
+<h2>Cleaning Up Space<a class="headerlink" href="#cleaning-up-space" title="Link to this heading">#</a></h2>
+<p>The container and image cache is stored in /scratch/&lt;fed_id&gt;/podman. If you
+are short on space you can use the following.</p>
+<p>To remove temporary images and stopped containers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">podman</span> <span class="n">system</span> <span class="n">prune</span>
+</pre></div>
+</div>
+<p>To remove individual images:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">podman</span> <span class="n">rmi</span> <span class="n">IMAGE_ID</span> <span class="c1"># from third column of podman images</span>
+
+<span class="n">OR</span> <span class="o">...</span>
+
+<span class="n">podman</span> <span class="n">rmi</span> <span class="n">REPOSITORY</span><span class="p">:</span><span class="n">TAG</span> <span class="c1"># 1st , 2nd columns of podman images</span>
+</pre></div>
+</div>
+<p>To remove all images with wildcard on REPOSITORY:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>podman rmi $(podman images --filter=reference=&#39;*PATTERN*&#39; -q)
+
+# PATTERN matches the REPOSITORY column
+</pre></div>
+</div>
+</section>
+</section>
+<section id="defining-a-container-image">
+<span id="dockerfile"></span><h1>Defining a Container Image<a class="headerlink" href="#defining-a-container-image" title="Link to this heading">#</a></h1>
+<p>The dev-c7 container image is built from the container context folder
+<code class="docutils literal notranslate"><span class="pre">dev-c7/docker</span></code>.
+The context contains a Dockerfile which details the steps to build the
+container image.</p>
+<p>To experiment with making additions to the dev-c7 project, first clone
+the project and do a test build of the container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">diamondlightsource</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">dev</span><span class="o">-</span><span class="n">c7</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
+<span class="n">cd</span> <span class="n">dev</span><span class="o">-</span><span class="n">c7</span>
+<span class="o">./</span><span class="n">build</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">c7</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">build-dev-c7</span></code> will create a container image with the tag
+<code class="docutils literal notranslate"><span class="pre">ghcr.io/diamondlightsource/dev-c7</span></code>. This is the same tag that <code class="docutils literal notranslate"><span class="pre">c7</span></code>
+uses so it will launch a container based on your newly built image.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will likely already have a dev-c7 container running and you must delete
+that before your new one will launch. Otherwise the launch script will
+just open a new bash session in the existing container.
+To do this see <a class="reference internal" href="../tutorials/continue.html#deleting"><span class="std std-ref">Deleting the container</span></a>.</p>
+</div>
+<p>Now you are ready to make any changes you wish to the Dockerfile and add
+any additional files to the context (i.e. in the <code class="docutils literal notranslate"><span class="pre">dev-c7/docker</span></code> folder).</p>
+<p>Below is the current Dockerfile, read on for an explanation of the
+commands used.</p>
+<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="c"># Dockerfile for getting DLS RHEL7 dev environment working in a container</span>
+<span class="c"># hosted on RHEL8</span>
+<span class="c">#</span>
+<span class="c"># This is a stopgap so that we can use effort to promote the</span>
+<span class="c"># kubernetes model https://github.com/diamondlightsource instead of spending</span>
+<span class="c"># effort in rebuilding our toolchain for RHEL8</span>
+
+<span class="k">FROM</span><span class="w"> </span><span class="s">centos:7</span>
+
+<span class="c"># environment</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+<span class="k">ENV</span><span class="w"> </span><span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8
+<span class="k">ENV</span><span class="w"> </span><span class="nv">LC_CTYPE</span><span class="o">=</span>en_US.UTF-8
+<span class="k">ENV</span><span class="w"> </span><span class="nv">MODULEPATH</span><span class="o">=</span>/etc/scl/modulefiles:/etc/scl/modulefiles:/etc/scl/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/share/modulefiles:/dls_sw/apps/Modules/modulefiles:/dls_sw/etc/modulefiles:/home/hgv27681/privatemodules:/dls_sw/prod/tools/RHEL8-x86_64/defaults/modulefiles
+
+<span class="c"># switch to the vault for centos packages!</span>
+<span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span>s/mirror.centos.org/vault.centos.org/g<span class="w"> </span>/etc/yum.repos.d/*.repo<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>sed<span class="w"> </span>-i<span class="w"> </span>s/^#.*baseurl<span class="o">=</span>http/baseurl<span class="o">=</span>http/g<span class="w"> </span>/etc/yum.repos.d/*.repo<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>sed<span class="w"> </span>-i<span class="w"> </span>s/^mirrorlist<span class="o">=</span>http/#mirrorlist<span class="o">=</span>http/g<span class="w"> </span>/etc/yum.repos.d/*.repo
+
+<span class="c"># make QT not complain</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">QT_X11_NO_MITSHM</span><span class="o">=</span><span class="m">1</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">LIBGL_ALWAYS_INDIRECT</span><span class="o">=</span><span class="m">1</span>
+
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>update<span class="w"> </span>-y<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>dev<span class="w"> </span>tools<span class="w"> </span>and<span class="w"> </span>libraries
+<span class="w">    </span>yum<span class="w"> </span>groupinstall<span class="w"> </span>-y<span class="w"> </span><span class="s2">&quot;Development Tools&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>glibc.i686<span class="w"> </span>redhat-lsb-core<span class="w"> </span>libusbx<span class="w"> </span>net-snmp-libs<span class="w"> </span>environment-modules<span class="w"> </span>git2u<span class="w"> </span>net-tools<span class="w"> </span>screen<span class="w"> </span>cmake<span class="w"> </span>lapack-devel<span class="w"> </span>readline-devel<span class="w"> </span>pcre-devel<span class="w"> </span>boost-devel<span class="w"> </span>libpcap-devel<span class="w"> </span>numactl-libs<span class="w"> </span>vim<span class="w"> </span>dbus-x11<span class="w"> </span>bind-utils<span class="w"> </span>libssh2-devel<span class="w"> </span>xorg-x11-server-Xvfb<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>edm<span class="w"> </span>dependencies
+<span class="w">    </span>epel-release<span class="w"> </span>giflib-devel<span class="w"> </span>libXmu-devel<span class="w"> </span>libpng-devel<span class="w"> </span>libXtst-devel<span class="w"> </span>zlib-devel<span class="w"> </span>xorg-x11-proto-devel<span class="w"> </span>motif-devel<span class="w"> </span>libX11-devel<span class="w"> </span>libXp-devel<span class="w"> </span>libXpm-devel<span class="w"> </span>libtirpc-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>areaDetector<span class="w"> </span>dependencies
+<span class="w">    </span>libxml2-devel<span class="w"> </span>libjpeg-turbo-devel<span class="w"> </span>libtiff-devel<span class="w"> </span>glib2-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>Odin<span class="w"> </span>dependencies
+<span class="w">    </span>hdf5-devel<span class="w"> </span>zeromq-devel<span class="w"> </span>librdkafka-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>QT4<span class="w"> </span>dependencies
+<span class="w">    </span>pyqt4-devel<span class="w"> </span>PackageKit-gtk3-module<span class="w"> </span>libcanberra-gtk2<span class="w"> </span>mesa-dri-drivers.x86_64<span class="w"> </span>xcb-util<span class="w"> </span>xcb-util-devel<span class="w"> </span>libxcb.x86_64<span class="w"> </span>libxkbcommon-x11<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>dls-remote-desktop-support
+<span class="w">    </span>xfreerdp<span class="w"> </span>zenity<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>useful<span class="w"> </span>tools
+<span class="w">    </span>sudo<span class="w"> </span>meld<span class="w"> </span>tk<span class="w"> </span>dejavu-sans-mono-fonts<span class="w"> </span>gnome-terminal<span class="w"> </span>xterm<span class="w"> </span>xmessage<span class="w"> </span>evince<span class="w"> </span>eog<span class="w"> </span>firefox<span class="w"> </span>java<span class="w"> </span>openldap-clients<span class="w"> </span>ant<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>These<span class="w"> </span>packages<span class="w"> </span>are<span class="w"> </span>not<span class="w"> </span>found<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>initial<span class="w"> </span>install<span class="w"> </span>so<span class="w"> </span>try<span class="w"> </span>again
+<span class="w">    </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>zeromq-devel<span class="w"> </span>git2u<span class="w"> </span>meld<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>install<span class="w"> </span>libnet<span class="w"> </span>library<span class="w"> </span><span class="k">for</span><span class="w"> </span>EPICS<span class="w"> </span>module<span class="w"> </span>builds
+<span class="w">    </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libnet<span class="w"> </span>libnet-devel<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>clean<span class="w"> </span>up<span class="w"> </span>caches
+<span class="w">    </span>yum<span class="w"> </span>clean<span class="w"> </span>all
+
+<span class="c">#install the required libusb developer library</span>
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>remove<span class="w"> </span>-y<span class="w"> </span>libusbx<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>curl<span class="w"> </span>-SL<span class="w"> </span>http://rpmfind.net/linux/opensuse/distribution/leap/15.5/repo/oss/x86_64/libusb-1_0-0-1.0.24-150400.3.3.1.x86_64.rpm<span class="w"> </span>-o<span class="w"> </span>/tmp/libusb-1.rpm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>/tmp/libusb-1.rpm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>rm<span class="w"> </span>/tmp/libusb-1.rpm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>curl<span class="w"> </span>-SL<span class="w"> </span>https://rpmfind.net/linux/opensuse/distribution/leap/15.5/repo/oss/x86_64/libusb-1_0-devel-1.0.24-150400.3.3.1.x86_64.rpm<span class="w"> </span>-o<span class="w"> </span>/tmp/libusb-devel-1.rpm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>/tmp/libusb-devel-1.rpm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>rm<span class="w"> </span>/tmp/libusb-devel-1.rpm
+
+<span class="c"># full sudo rights inside the container</span>
+<span class="k">COPY</span><span class="w"> </span>/sudoers<span class="w"> </span>/etc/sudoers
+
+<span class="c"># Workaround to ensure all locales are available</span>
+<span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/override_install_langs=en_US/d&quot;</span><span class="w"> </span>/etc/yum.conf
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>reinstall<span class="w"> </span>-y<span class="w"> </span>glibc-common
+
+<span class="c"># set container time to BST</span>
+<span class="k">RUN</span><span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/usr/share/zoneinfo/Europe/London<span class="w"> </span>/etc/localtime
+
+<span class="c"># latest git from the endpoint repo https://computingforgeeks.com/install-git-2-on-centos-7/</span>
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>remove<span class="w"> </span>-y<span class="w"> </span>git<span class="w"> </span>git-core<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#<span class="w"> </span>libcurl-devel<span class="w"> </span><span class="k">for</span><span class="w"> </span>git-remote-https
+<span class="w">    </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>libcurl-devel<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>git-core
+
+<span class="c"># change the nobody account and group IDs to match RedHat</span>
+<span class="k">RUN</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/99:99/65534:65534/&#39;</span><span class="w"> </span>/etc/passwd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/:99:/:65534:/&#39;</span><span class="w"> </span>/etc/group
+
+<span class="c"># Install uv using the official image</span>
+<span class="c"># See https://docs.astral.sh/uv/guides/integration/docker/#installing-uv</span>
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.8<span class="w"> </span>/uv<span class="w"> </span>/uvx<span class="w"> </span>/bin/
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/opt</span>
+
+<span class="k">ENV</span><span class="w"> </span><span class="nv">UV_PYTHON_INSTALL_DIR</span><span class="o">=</span>/python
+<span class="k">ENV</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="s2">:/opt/.venv/bin&quot;</span>
+
+<span class="c"># Add in stdio socket for sharing the epics console</span>
+<span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>venv<span class="w"> </span>--managed-python<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>stdio-socket<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>chmod<span class="w"> </span>-R<span class="w"> </span>a+rwX<span class="w"> </span>/opt/.venv
+
+<span class="c"># Make a psuedo home directory for running in cluster</span>
+<span class="k">COPY</span><span class="w"> </span>epics_home<span class="w"> </span>/epics_home
+<span class="k">RUN</span><span class="w"> </span>chmod<span class="w"> </span>a+rws<span class="w"> </span>/epics_home
+</pre></div>
+</div>
+<p>The base image is selected with the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> command this defines what the
+container file system looks like initially. Every command in the Dockerfile
+then adds a layer of change to the container image.</p>
+<p>The majority of the Dockerfile for <code class="docutils literal notranslate"><span class="pre">dev-c7</span></code> is using yum install to get
+packages installed into the OS. Yum is executed via the <code class="docutils literal notranslate"><span class="pre">RUN</span></code> command.
+Note that the <code class="docutils literal notranslate"><span class="pre">RUN</span></code> command takes a single shell command line input.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is
+common in Dockerfiles to use <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span> <span class="pre">\</span></code> to string multiple commands together
+in a single <code class="docutils literal notranslate"><span class="pre">RUN</span></code>. The reason to do this is to minimize the number
+of layers
+in the container image. In particular, if you want to clean up temporary
+files, it must be done in the same layer they were created or it will not
+reduce the size of the resulting image (because there is a layer with the
+temp files and then another layer that removes them).</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">RUN</span></code> command may execute any command that is available inside the
+container. For example the above uses a single <code class="docutils literal notranslate"><span class="pre">RUN</span></code> to get the source for
+a new version of git and compile it.</p>
+<p>Another command in this Dockerfile is <code class="docutils literal notranslate"><span class="pre">ENV</span></code> which simply sets an environment
+variable for the processes the container launches.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">COPY</span></code> command allows you to supply files from the context
+(<code class="docutils literal notranslate"><span class="pre">dev-c7/docker</span></code> folder in this case).
+Note that the path / is the root of the context. You can only
+copy files from inside the context, thus the context folder holds the entire
+definition of the image generated.</p>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../how-to.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">How-to Guides</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="contribute.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Contribute to the project</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Managing Containers and Images on a Workstation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring">Monitoring</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-up-space">Cleaning Up Space</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-a-container-image">Defining a Container Image</a></li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/DiamondLightSource/dev-c7/edit/2025.9.1/docs/how-to/containers.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/how-to/containers.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
