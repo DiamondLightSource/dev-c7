@@ -632,9 +632,8 @@ commands used.</p>
 <span class="k">COPY</span><span class="w"> </span>epics_home<span class="w"> </span>/epics_home
 <span class="k">RUN</span><span class="w"> </span>chmod<span class="w"> </span>a+rws<span class="w"> </span>/epics_home
 
-<span class="c"># Add in busybox for diagnosic tools</span>
-<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>busybox<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>busybox<span class="w"> </span>--install<span class="w"> </span>-s
+<span class="c"># Add in netcat for network diagnosis</span>
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>netcat
 </pre></div>
 </div>
 <p>The base image is selected with the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> command this defines what the
