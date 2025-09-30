@@ -1,6 +1,30 @@
 [
   {
+    "version": "main",
+    "url": "https://DiamondLightSource.github.io/dev-c7/main/"
+  },
+  {
     "version": "2025.9.1",
     "url": "https://DiamondLightSource.github.io/dev-c7/2025.9.1/"
+  },
+  {
+    "version": "9.1.2-beta.1",
+    "url": "https://DiamondLightSource.github.io/dev-c7/9.1.2-beta.1/"
+  },
+  {
+    "version": ".tox",
+    "url": "https://DiamondLightSource.github.io/dev-c7/.tox/"
+  },
+  {
+    "version": "build",
+    "url": "https://DiamondLightSource.github.io/dev-c7/build/"
+  },
+  {
+    "version": "docs",
+    "url": "https://DiamondLightSource.github.io/dev-c7/docs/"
+  },
+  {
+    "version": "src",
+    "url": "https://DiamondLightSource.github.io/dev-c7/src/"
   }
 ]
