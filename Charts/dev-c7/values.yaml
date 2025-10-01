@@ -62,7 +62,10 @@ securityContext: {}
 # @schema $ref: $k8s/container.json#/properties/resources
 resources: {}
 
-# @schema description: Full path to an IOC instance's autosave folder
+# @cschema description: Path to the folder above the IOC's autosave folder. Used to generate the autosavePath as autosaveRootPath/iocName
+autosaveRootPath: ""
+
+# @schema description: Full path to an IOC instance's autosave folder. Overrides autosaveRootPath when not blank
 autosavePath: ""
 
 # volumes for the Deployment.

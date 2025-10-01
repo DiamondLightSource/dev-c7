@@ -92,6 +92,12 @@ spec:
             - name: autosave
               mountPath: {{ . }}
               readOnly: false
+          {{- else }}
+          {{- with .Values.autosaveRootPath }}
+            - name: autosave
+              mountPath: {{ . }}/{{ $ioc_name }}
+              readOnly: false
+          {{- end }}
           {{- end }}
       {{- with .Values.volumes }}
       volumes:
@@ -101,6 +107,12 @@ spec:
         - name: autosave
           hostPath:
             path: {{ . }}
+      {{- else }}
+      {{- with .Values.autosaveRootPath }}
+        - name: autosave
+          hostPath:
+            path: {{ . }}/{{ $ioc_name }}
+      {{- end }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

@@ -9,7 +9,10 @@
             "type": "object"
         },
         "autosavePath": {
-            "description": "Full path to an IOC instance's autosave folder",
+            "description": "Full path to an IOC instance's autosave folder. Overrides autosaveRootPath when not blank",
+            "type": "string"
+        },
+        "autosaveRootPath": {
             "type": "string"
         },
         "command": {
