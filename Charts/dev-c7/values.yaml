@@ -56,11 +56,17 @@ podLabels: {}
 # @schema $ref: $k8s/podspec.json#/properties/securityContext
 podSecurityContext: {}
 
-# @schema  $ref:$k8s/container.json#/properties/securityContext
+# @schema $ref:$k8s/container.json#/properties/securityContext
 securityContext: {}
 
-# @schema  $ref: $k8s/container.json#/properties/resources
+# @schema $ref: $k8s/container.json#/properties/resources
 resources: {}
+
+# @cschema description: Path to the folder above the IOC's autosave folder. Used to generate the autosavePath as autosaveRootPath/iocName
+autosaveRootPath: ""
+
+# @schema description: Full path to an IOC instance's autosave folder. Overrides autosaveRootPath when not blank
+autosavePath: ""
 
 # volumes for the Deployment.
 # @schema $ref: $k8s/podspec.json#/properties/volumes
@@ -74,9 +80,6 @@ volumes:
   - name: epics
     hostPath:
       path: /dls_sw/epics
-  - name: apps
-    hostPath:
-      path: /dls_sw/apps
   - name: targetos
     hostPath:
       path: /dls_sw/targetOS
@@ -95,9 +98,6 @@ volumeMounts:
     readOnly: true
   - name: epics
     mountPath: /dls_sw/epics
-    readOnly: true
-  - name: apps
-    mountPath: /dls_sw/apps
     readOnly: true
   - name: targetos
     mountPath: /dls_sw/targetOS
