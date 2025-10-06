@@ -9,16 +9,16 @@
 #   https://github.com/losisin/helm-values-schema-json.git
 
 # @schema description: the folder name for the compiled IOC, defaults to ucase of the services folder name
-ioc_name: ""
-# @schema description: the IOC release, used to generate the /dls_sw/prod path to ioc_name
-ioc_version: ""
-# @schema description: the IOC domain (e.g. BL16I FE02J SR03C)
-ioc_domain: ""
-# @schema description: the EPICS version, used to generate the /dls_sw/prod path to ioc_name
-epics_version: R3.14.12.7
+iocName: ""
+# @schema description: the IOC release, used to generate the /dls_sw/prod path to iocName
+iocVersion: ""
+# @schema description: the IOC location (e.g. BL16I FE02J SR03C)
+iocLocation: ""
+# @schema description: the EPICS version, used to generate the /dls_sw/prod path to iocName
+epicsVersion: R3.14.12.7
 
-# @schema description: overrides the parent folder for ioc_name to any path in /dls_sw/work or /dls_sw/prod
-ioc_path: ""
+# @schema description: overrides the parent folder for iocName to any path in /dls_sw/work or /dls_sw/prod
+iocPath: ""
 
 # @schema description: shared values for all services
 # @schema additionalProperties: true

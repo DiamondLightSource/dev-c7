@@ -89,8 +89,8 @@ RUN uv venv --managed-python --python 3.12 && \
     chmod -R a+rwX /opt/.venv
 
 # Make a psuedo home directory for running in cluster
-COPY epics_home /epics_home
-RUN chmod a+rws /epics_home
+COPY epicsHome /epicsHome
+RUN chmod a+rws /epicsHome
 
 # Add in netcat for network diagnosis
 RUN yum install -y netcat

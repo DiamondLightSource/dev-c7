@@ -54,13 +54,13 @@ spec:
             {{- .Values.command | toYaml | nindent 12 }}
           stdin: true
           tty: true
-          {{- $domain := (.Values.ioc_domain | default $location) | upper }}
-          {{- $ioc_name := (.Values.ioc_name | default .Release.Name) | upper }}
+          {{- $iocLocation := (.Values.iocLocation | default $location) | upper }}
+          {{- $iocName := (.Values.iocName | default .Release.Name) | upper }}
           {{ $workingDir := "" }} {{- /* create the variable in global scope before setting in if/else!!! */ -}}
-          {{- if .Values.ioc_path }}
-            {{- $workingDir = printf "%s/%s" .Values.ioc_path $ioc_name }}
+          {{- if .Values.iocPath }}
+            {{- $workingDir = printf "%s/%s" .Values.iocPath $iocName }}
           {{- else }}
-            {{- $workingDir = printf "/dls_sw/prod/%s/ioc/%s/%s/%s" .Values.epics_version $domain $ioc_name .Values.ioc_version }}
+            {{- $workingDir = printf "/dls_sw/prod/%s/ioc/%s/%s/%s" .Values.epicsVersion $iocLocation $iocName .Values.iocVersion }}
           {{- end }}
           workingDir: {{ $workingDir }}
           {{- with .Values.securityContext }}
@@ -70,7 +70,7 @@ spec:
           env:
           # psuedo home sets up epics module etc.
           - name: HOME
-            value: /epics_home
+            value: /epicsHome
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
@@ -95,7 +95,7 @@ spec:
           {{- else }}
           {{- with .Values.autosaveRootPath }}
             - name: autosave
-              mountPath: {{ . }}/{{ $ioc_name }}
+              mountPath: {{ . }}/{{ $iocName }}
               readOnly: false
           {{- end }}
           {{- end }}
@@ -111,7 +111,7 @@ spec:
       {{- with .Values.autosaveRootPath }}
         - name: autosave
           hostPath:
-            path: {{ . }}/{{ $ioc_name }}
+            path: {{ . }}/{{ $iocName }}
       {{- end }}
       {{- end }}
       {{- with .Values.nodeSelector }}
