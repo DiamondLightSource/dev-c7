@@ -1,4 +1,4 @@
-# epics_home
+# epicsHome
 
 This is a psuedo home directory for launching EPICS IOCs in-cluster using dev-c7.
 
