@@ -29,7 +29,7 @@ RUN yum update -y && \
     # edm dependencies
     epel-release giflib-devel libXmu-devel libpng-devel libXtst-devel zlib-devel xorg-x11-proto-devel motif-devel libX11-devel libXp-devel libXpm-devel libtirpc-devel \
     # areaDetector dependencies
-    libxml2-devel libjpeg-turbo-devel libtiff-devel glib2-devel \
+    libxml2-devel libjpeg-turbo-devel libtiff-devel glib2-devel ImageMagick\
     # Odin dependencies
     hdf5-devel zeromq-devel librdkafka-devel \
     # QT4 dependencies
