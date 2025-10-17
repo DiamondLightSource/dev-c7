@@ -5,7 +5,7 @@ This keeps the length of the values.txt file for each individual IOC
 to a minimum
 */ -}}
 {{- $location := default .Values.global.location .Values.location | required "ERROR - You must supply location or global.location" -}}
-{{- $ioc_group := default .Values.global.ioc_group .Values.ioc_group | required "ERROR - You must supply ioc_group or global.ioc_group" -}}
+{{- $domain := default .Values.global.domain .Values.domain | required "ERROR - You must supply domain or global.domain" -}}
 {{- $image := .Values.image | required "ERROR - You must supply image." -}}
 
 {{- $enabled := eq .Values.global.enabled false | ternary false true -}}
@@ -17,7 +17,7 @@ metadata:
   labels:
     app: {{ .Release.Name }}
     location: {{ $location }}
-    ioc_group: {{ $ioc_group }}
+    domain: {{ $domain }}
     enabled: {{ $enabled | quote }}
     is_ioc: "true"
 spec:
@@ -34,7 +34,7 @@ spec:
       labels:
         app: {{ .Release.Name }}
         location: {{ $location }}
-        ioc_group: {{ $ioc_group }}
+        domain: {{ $domain }}
         is_ioc: "true"
     spec:
       hostNetwork: {{ .Values.hostNetwork }}
