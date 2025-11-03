@@ -8,6 +8,12 @@
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/affinity.json",
             "type": "object"
         },
+        "args": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
         "autosavePath": {
             "description": "Full path to an IOC instance's autosave folder. Overrides autosaveRootPath when not blank",
             "type": "string"
@@ -21,6 +27,10 @@
             "items": {
                 "type": "string"
             }
+        },
+        "epicsDomain": {
+            "description": "IOCs DLS EPICS Domain (e.g. BL16I FE02J SR03C)",
+            "type": "string"
         },
         "epicsVersion": {
             "description": "the EPICS version, used to generate the /dls_sw/prod path to iocName",
@@ -55,10 +65,6 @@
         },
         "imagePullSecrets": {
             "type": "array"
-        },
-        "iocLocation": {
-            "description": "the IOC location (e.g. BL16I FE02J SR03C)",
-            "type": "string"
         },
         "iocName": {
             "description": "the folder name for the compiled IOC, defaults to ucase of the services folder name",

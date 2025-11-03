@@ -12,8 +12,8 @@
 iocName: ""
 # @schema description: the IOC release, used to generate the /dls_sw/prod path to iocName
 iocVersion: ""
-# @schema description: the IOC location (e.g. BL16I FE02J SR03C)
-iocLocation: ""
+# @schema description: IOCs DLS EPICS Domain (e.g. BL16I FE02J SR03C)
+epicsDomain: ""
 # @schema description: the EPICS version, used to generate the /dls_sw/prod path to iocName
 epicsVersion: R3.14.12.7
 
@@ -36,7 +36,10 @@ image:
 command:
   - bash
   - -lc
-  - stdio-expose ./bin/linux-x86_64/st*.sh
+  - stdio-expose
+
+args:
+  - ./bin/linux-x86_64/st*.sh
 
 # @schema description: enable host networking for the pod
 hostNetwork: false
@@ -86,6 +89,9 @@ volumes:
   - name: etc
     hostPath:
       path: /dls_sw/etc
+  - name: apps
+    hostPath:
+      path: /dls_sw/apps
 
 # volumeMounts for the Deployment.
 # @schema $ref: $k8s/container.json#/properties/volumeMounts
