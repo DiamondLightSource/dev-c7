@@ -36,6 +36,16 @@
             "description": "the EPICS version, used to generate the /dls_sw/prod path to iocName",
             "type": "string"
         },
+        "extraVolumeMounts": {
+            "description": "add extra mounts without overriding the default ones",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/container.json#/properties/volumeMounts",
+            "type": "array"
+        },
+        "extraVolumes": {
+            "description": "add extra volumes without overriding the default ones",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/podspec.json#/properties/volumes",
+            "type": "array"
+        },
         "fullnameOverride": {
             "type": "string"
         },
