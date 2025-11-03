@@ -146,6 +146,10 @@
                     }
                 }
             }
+        },
+        "workingDir": {
+            "description": "override the cwd for launching the IOC, defaults to /dls_sw/prod/$epicsVersion/ioc/$epicsDomain/$iocName/$iocVersion",
+            "type": "string"
         }
     },
     "additionalProperties": false

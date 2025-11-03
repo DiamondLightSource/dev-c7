@@ -16,6 +16,8 @@ iocVersion: ""
 epicsDomain: ""
 # @schema description: the EPICS version, used to generate the /dls_sw/prod path to iocName
 epicsVersion: R3.14.12.7
+# @schema description: override the cwd for launching the IOC, defaults to /dls_sw/prod/$epicsVersion/ioc/$epicsDomain/$iocName/$iocVersion
+workingDir: ""
 
 # @schema description: overrides the parent folder for iocName to any path in /dls_sw/work or /dls_sw/prod
 iocPath: ""
