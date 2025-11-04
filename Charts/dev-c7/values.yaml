@@ -37,10 +37,9 @@ image:
 command:
   - bash
   - -lc
-  - stdio-expose
 
 args:
-  - ./bin/linux-x86_64/st*.sh
+  - stdio-expose ./bin/linux-x86_64/st*.sh
 
 # @schema description: enable host networking for the pod
 hostNetwork: false
@@ -90,9 +89,6 @@ volumes:
   - name: etc
     hostPath:
       path: /dls_sw/etc
-  - name: apps
-    hostPath:
-      path: /dls_sw/apps
 
 # extraVolumes for the Deployment.
 # @schema description: add extra volumes without overriding the default ones

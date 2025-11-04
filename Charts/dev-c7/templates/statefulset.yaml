@@ -52,27 +52,29 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           command:
             {{- .Values.command | toYaml | nindent 12 }}
+          args:
+            {{- .Values.args | toYaml | nindent 12 }}
           stdin: true
           tty: true
           {{- $epicsDomain := (.Values.epicsDomain | default $location) | upper }}
           {{- $iocName := (.Values.iocName | default .Release.Name) | upper }}
-          {{ $workingDir := .Values.workingDir }}
-          {{ if eq $workingDir  "" }}
+          {{- $workingDir := .Values.workingDir }}
+          {{- if eq $workingDir  "" }}
             {{- if .Values.iocPath }}
               {{- $workingDir = printf "%s/%s" .Values.iocPath $iocName }}
             {{- else }}
               {{- $workingDir = printf "/dls_sw/prod/%s/ioc/%s/%s/%s" .Values.epicsVersion $epicsDomain $iocName .Values.iocVersion }}
             {{- end }}
-          {{ end }}
+          {{- end }}
           workingDir: {{ .Values.workingDir | default $workingDir }}
           {{- with .Values.securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           env:
-          # psuedo home sets up epics module etc.
-          - name: HOME
-            value: /epicsHome
+            # psuedo home sets up epics module etc.
+            - name: HOME
+              value: /epicsHome
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
@@ -89,7 +91,7 @@ spec:
           {{- with .Values.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
-            {{ - with .Values.extraVolumeMounts }}
+            {{- with $.Values.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
           {{- end }}
@@ -107,7 +109,7 @@ spec:
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
-        {{ - with .Values.extraVolumes }}
+        {{- with $.Values.extraVolumes }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
       {{- end }}
