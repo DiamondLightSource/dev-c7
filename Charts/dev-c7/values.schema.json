@@ -8,6 +8,12 @@
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/affinity.json",
             "type": "object"
         },
+        "args": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
         "autosavePath": {
             "description": "Full path to an IOC instance's autosave folder. Overrides autosaveRootPath when not blank",
             "type": "string"
@@ -22,9 +28,23 @@
                 "type": "string"
             }
         },
+        "epicsDomain": {
+            "description": "IOCs DLS EPICS Domain (e.g. BL16I FE02J SR03C)",
+            "type": "string"
+        },
         "epicsVersion": {
             "description": "the EPICS version, used to generate the /dls_sw/prod path to iocName",
             "type": "string"
+        },
+        "extraVolumeMounts": {
+            "description": "add extra mounts without overriding the default ones",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/container.json#/properties/volumeMounts",
+            "type": "array"
+        },
+        "extraVolumes": {
+            "description": "add extra volumes without overriding the default ones",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/podspec.json#/properties/volumes",
+            "type": "array"
         },
         "fullnameOverride": {
             "type": "string"
@@ -55,10 +75,6 @@
         },
         "imagePullSecrets": {
             "type": "array"
-        },
-        "iocLocation": {
-            "description": "the IOC location (e.g. BL16I FE02J SR03C)",
-            "type": "string"
         },
         "iocName": {
             "description": "the folder name for the compiled IOC, defaults to ucase of the services folder name",
@@ -140,6 +156,10 @@
                     }
                 }
             }
+        },
+        "workingDir": {
+            "description": "override the cwd for launching the IOC, defaults to /dls_sw/prod/$epicsVersion/ioc/$epicsDomain/$iocName/$iocVersion",
+            "type": "string"
         }
     },
     "additionalProperties": false

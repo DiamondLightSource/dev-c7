@@ -12,13 +12,14 @@
 iocName: ""
 # @schema description: the IOC release, used to generate the /dls_sw/prod path to iocName
 iocVersion: ""
-# @schema description: the IOC location (e.g. BL16I FE02J SR03C)
-iocLocation: ""
+# @schema description: IOCs DLS EPICS Domain (e.g. BL16I FE02J SR03C)
+epicsDomain: ""
 # @schema description: the EPICS version, used to generate the /dls_sw/prod path to iocName
 epicsVersion: R3.14.12.7
-
 # @schema description: overrides the parent folder for iocName to any path in /dls_sw/work or /dls_sw/prod
 iocPath: ""
+# @schema description: override the cwd for launching the IOC, defaults to /dls_sw/prod/$epicsVersion/ioc/$epicsDomain/$iocName/$iocVersion
+workingDir: ""
 
 # @schema description: shared values for all services
 # @schema additionalProperties: true
@@ -36,6 +37,8 @@ image:
 command:
   - bash
   - -lc
+
+args:
   - stdio-expose ./bin/linux-x86_64/st*.sh
 
 # @schema description: enable host networking for the pod
@@ -87,6 +90,11 @@ volumes:
     hostPath:
       path: /dls_sw/etc
 
+# extraVolumes for the Deployment.
+# @schema description: add extra volumes without overriding the default ones
+# @schema $ref: $k8s/podspec.json#/properties/volumes
+extraVolumes: []
+
 # volumeMounts for the Deployment.
 # @schema $ref: $k8s/container.json#/properties/volumeMounts
 volumeMounts:
@@ -105,6 +113,11 @@ volumeMounts:
   - name: etc
     mountPath: /dls_sw/etc
     readOnly: true
+
+# extraVolumeMounts for the Deployment.
+# @schema description: add extra mounts without overriding the default ones
+# @schema $ref: $k8s/container.json#/properties/volumeMounts
+extraVolumeMounts: []
 
 # @schema $ref: $k8s/podspec.json#/properties/tolerations
 tolerations: []
