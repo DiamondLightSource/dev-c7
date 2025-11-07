@@ -111,9 +111,18 @@
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/container.json#/properties/resources",
             "type": "object"
         },
+        "runtimeClassName": {
+            "description": "at DLS set to 'usb-compat' for mounting in USB devices",
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/podspec.json#/properties/runtimeClassName",
+            "type": "string"
+        },
         "securityContext": {
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/container.json#/properties/securityContext",
             "type": "object"
+        },
+        "serviceAccountName": {
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/podspec.json#/properties/serviceAccountName",
+            "type": "string"
         },
         "tolerations": {
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/podspec.json#/properties/tolerations",

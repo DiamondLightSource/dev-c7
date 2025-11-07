@@ -37,6 +37,12 @@ spec:
         domain: {{ $domain }}
         is_ioc: "true"
     spec:
+      {{- with .runtimeClassName }}
+      runtimeClassName: {{ . }}
+      {{- end }}
+      {{- with .serviceAccountName }}
+      serviceAccountName: {{ . | quote }}
+      {{- end }}
       hostNetwork: {{ .Values.hostNetwork }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

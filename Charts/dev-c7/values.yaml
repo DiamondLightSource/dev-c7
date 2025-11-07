@@ -41,8 +41,15 @@ command:
 args:
   - stdio-expose ./bin/linux-x86_64/st*.sh
 
+# @schema description: at DLS set to 'usb-compat' for mounting in USB devices
+# @schema  $ref:$k8s/podspec.json#/properties/runtimeClassName
+runtimeClassName: ""
+
+# @schema  $ref:$k8s/podspec.json#/properties/serviceAccountName
+serviceAccountName: ""
+
 # @schema description: enable host networking for the pod
-hostNetwork: false
+hostNetwork: true
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
