@@ -88,6 +88,10 @@
             "description": "the IOC release, used to generate the /dls_sw/prod path to iocName",
             "type": "string"
         },
+        "livenessProbe": {
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/container.json#/properties/livenessProbe",
+            "type": "object"
+        },
         "nameOverride": {
             "type": "string"
         },
@@ -105,6 +109,10 @@
         },
         "podSecurityContext": {
             "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/podspec.json#/properties/securityContext",
+            "type": "object"
+        },
+        "readinessProbe": {
+            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.3/container.json#/properties/readinessProbe",
             "type": "object"
         },
         "resources": {
