@@ -94,3 +94,6 @@ RUN chmod a+rws /epicsHome
 
 # Add in netcat for network diagnosis
 RUN yum install -y netcat
+
+# Add USB diagnostics
+RUN yum install -y usbutils udev strace pciutils lsof
